@@ -1,0 +1,43 @@
+/* styles.css */
+
+.tohide-element{
+  transition: transform 0.5s ease;
+  overflow: hidden;
+  display:hide;
+  max-height:auto;
+}
+
+.content {
+    margin-top: auto;
+    transition: margin-top 0.5s ease;
+  }
+
+html {
+  scroll-behavior: smooth;
+ }
+
+body {
+  font-family: Century Gothic, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+#wrapper {
+  margin: auto;
+  padding: 10px;
+}
+
+h1, p {
+  text-align: center;
+}
+
+iframe {
+       border: none;  
+  align-items: center;
+  height:650px;
+  justify-content: center;
+    }
+
+.iframe-container {
+  display: flex;
+}
