@@ -1,29 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phantom Tools</title>
+  <meta content="Phantom Tools" property="og:title">
+  <meta content="Tools, automation and more" property="og:description">
   <link rel="stylesheet" href="./cndictstyle.css">
   <link rel="icon" href="./assets/elysigicon.png" type="image/png">
-<style>
-#wrapper{
-  max-width: max-content;
-  margin: auto;}
-h1 {text-align: center;}
-p {text-align: center;}
-</style>
 </head>
-
-<title>Phantom Tools</title>
-<meta content="Phantom Tools" property="og:title" />
-<meta content="website for small scale projects" property="og:description" />
-
 <body>
-<div id="wrapper">
-<h1>Tools, automation and more</h1>
-<p>Tools database and other personal projects</p>
-Other Pages:<br>
-<a href="cndict">Multi-language Dictionary Aggregator (Mandarin version)</a><br>
-<a href="datainputter">Document Data Processor Example</a><br>
-<a href="zhprocessor">Context-aware Chinese Transliteration Pipeline (in works)</a><br>
+
+<nav class="navbar">
+  <a class="navbar-brand" href="/">phantom.moe</a>
+  <ul class="navbar-links">
+    <li><a href="cndict">Dictionary</a></li>
+    <li><a href="datainputter">Doc Processor</a></li>
+    <li><a href="zhprocessor">ZH Pipeline</a></li>
+  </ul>
+</nav>
+
+<div class="page-content">
+
+  <div class="hero">
+    <h1>Tools, automation and more</h1>
+    <p>A collection of personal tools and projects</p>
+  </div>
+
+  <div class="cards-grid">
+
+    <div class="card">
+      <p class="card-title">Mandarin Dictionary Aggregator</p>
+      <p class="card-desc">Search across Naver, Weblio, Wiktionary, Forvo, Papago, Baidu, DeepL, and more, all at once. Built for Mandarin learners and translators.</p>
+      <div class="card-actions">
+        <a href="cndict" class="btn">Open Tool →</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="badge badge-mint">Coming Soon</span>
+      <p class="card-title">Document Data Processor</p>
+      <p class="card-desc">Parse data from documents and output in a processed format to a location of your choice. Automates extraction from structured documents.</p>
+      <div class="card-actions">
+        <a href="datainputter" class="btn btn-ghost">Learn More</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="badge badge-mint">Coming Soon</span>
+      <p class="card-title">Chinese Localization Pipeline</p>
+      <p class="card-desc">Process audio from media and generate Chinese subtitles with NLP, multi-LLM translation, and optional pinyin overlays. Containerized via Docker.</p>
+      <div class="card-actions">
+        <a href="zhprocessor" class="btn btn-ghost">Learn More</a>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 </body>
 </html>

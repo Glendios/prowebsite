@@ -1,55 +1,66 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Mandarin Dictionary Aggregator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mandarin Dictionary Aggregator — Phantom Tools</title>
+  <meta content="Mandarin Dictionary Aggregator" property="og:title">
+  <meta content="Search across multiple dictionaries simultaneously" property="og:description">
   <link rel="stylesheet" href="./cndictstyle.css">
-  <link rel="icon" href="./assets/elysigicon.png" type="image/png"> 
+  <link rel="icon" href="./assets/elysigicon.png" type="image/png">
+</head>
+<body>
 
-</head>
-<body>
-<!-- partial:index.partial.html -->
-<head>
-  <title>Mandarin Dictionary Aggregator</title>
-</head>
-<body>
-  <div id="wrapper">
-    <a href="/">< Back to home</a>
-    Guests: try 快乐
-    <input type="text" id="searchInputBox" placeholder="Enter search term">
-    <button id="dictionarySearchButton" onclick="searchWebsites()">Search</button>
-    
-    <input type="text" id="translateInputBox" placeholder="Enter English to Translate">
-    <button id="translateButton" onclick="translateWebsites()">Translate</button>
-    <input type="text" id="translateDeeplBox" placeholder="Translation result (DeepL)">
-    <input type="text" id="deeplBoxStatus" placeholder="API takes a min to initialize">
-    <button onclick="scrollToTop()">Scroll To Top</button>
-    
-    <div class="tohide-element">
-    <h1>Mandarin to Multi-language Dictionary</h1>
-    <p>Enter a search term to search/translate on all websites simultaneously:</p>
-    </div>
-    <div class="content">
-<!--     <button onclick="scrollToTopIframes()">Scroll To Iframe</button> -->
-    
-    <br>
-    <iframe id="naverFrame" width="28%" src="about:blank" scrolling="yes"></iframe>
-    <!--src="about:blank" style="border: 0px none; margin-left: 185px; height: 459px; margin-top: 2px; width: 926px;"></iframe>-->
-    <iframe id="weblioFrame" width="41%" src="about:blank" scrolling="yes"></iframe>
-    <iframe id="wikitFrame" width="30%" src="about:blank" scrolling="yes"></iframe>
-    <br>
-    <iframe id="forvoFrame" width="12%" src="about:blank" scrolling="yes"></iframe>
-    <iframe id="papagoFrame" width="33%" src="about:blank" scrolling="yes"></iframe>
-    <iframe id="baiduFrame" width="54%" src="about:blank" scrolling="yes"></iframe>
-    <iframe id="deeplFrame" width="40%" src="about:blank" scrolling="yes"></iframe>
-    <iframe id="hanziFrame" width="40%" src="about:blank" scrolling="yes"></iframe>
-    
-    <button onclick="scrollToTop()">Scroll To Toep</button>
+<nav class="navbar">
+  <a class="navbar-brand" href="/">phantom.moe</a>
+  <ul class="navbar-links">
+    <li><a href="cndict">Dictionary</a></li>
+    <li><a href="datainputter">Doc Processor</a></li>
+    <li><a href="zhprocessor">ZH Pipeline</a></li>
+  </ul>
+</nav>
+
+<div class="dict-header">
+  <h1>Mandarin Dictionary Aggregator</h1>
+  <p>Search across all dictionaries simultaneously — try <strong>快乐</strong></p>
+
+  <div class="dict-controls">
+    <input class="dict-input" type="text" id="searchInputBox" placeholder="Search term (Mandarin)">
+    <button class="btn" id="dictionarySearchButton" onclick="searchWebsites()">Search</button>
+
+    <div class="dict-divider"></div>
+
+    <input class="dict-input" type="text" id="translateInputBox" placeholder="English to translate">
+    <button class="btn" id="translateButton" onclick="translateWebsites()">Translate</button>
+    <input class="dict-input" type="text" id="translateDeeplBox" placeholder="DeepL result" readonly>
+    <input class="dict-input" type="text" id="deeplBoxStatus" placeholder="API initializing..." readonly>
+
+    <div class="dict-divider"></div>
+
+    <button class="btn btn-ghost" onclick="scrollToTop()">Scroll To Top</button>
   </div>
-</body>
-</html>
-<!-- partial -->
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="./cndictscript.js"></script>
+</div>
+
+<div class="tohide-element" id="dictIntro">
+  <!-- auto-hidden after 3s by JS -->
+</div>
+
+<div class="content iframe-container">
+  <iframe id="naverFrame" width="28%" src="about:blank" scrolling="yes"></iframe>
+  <iframe id="weblioFrame" width="41%" src="about:blank" scrolling="yes"></iframe>
+  <iframe id="wikitFrame" width="30%" src="about:blank" scrolling="yes"></iframe>
+</div>
+<div class="iframe-container">
+  <iframe id="forvoFrame" width="12%" src="about:blank" scrolling="yes"></iframe>
+  <iframe id="papagoFrame" width="33%" src="about:blank" scrolling="yes"></iframe>
+  <iframe id="baiduFrame" width="54%" src="about:blank" scrolling="yes"></iframe>
+</div>
+<div class="iframe-container">
+  <iframe id="deeplFrame" width="40%" src="about:blank" scrolling="yes"></iframe>
+  <iframe id="hanziFrame" width="40%" src="about:blank" scrolling="yes"></iframe>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="./cndictscript.js"></script>
 </body>
 </html>
