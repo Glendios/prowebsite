@@ -126,6 +126,12 @@
 
     .toggle-btn:hover { border-color: var(--accent); }
 
+    .link-btn {
+      text-decoration: none;
+      color: var(--text-muted);
+    }
+    .link-btn:hover { color: var(--accent); }
+
     /* ── iframe card grid ───────────────── */
 
     .cards-wrap {
@@ -182,9 +188,9 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      flex: 1;
-      padding: 24px;
+      gap: 10px;
+      height: 100px;
+      padding: 16px 24px;
       text-align: center;
     }
 
@@ -196,6 +202,25 @@
 
     .open-card-body .btn {
       font-size: 0.85rem;
+    }
+
+    .deepl-result-body {
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .deepl-result-body #deeplResultText {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: var(--text);
+      min-height: 60px;
+    }
+
+    .deepl-status {
+      font-size: 0.78rem;
+      color: var(--text-muted);
     }
 
     .open-card-body .btn[href="#"] {
@@ -216,26 +241,19 @@
 
 <div class="dict-header">
   <h1>Mandarin Dictionary Aggregator</h1>
-  <p class="subtitle">Search across all dictionaries simultaneously — try <strong>快乐</strong></p>
+  <p class="subtitle">Search across all dictionaries simultaneously. try <strong>快乐</strong></p>
 
   <div class="dict-rows">
     <div class="dict-row">
       <span class="dict-row-label">Search</span>
-      <input class="dict-input wide" type="text" id="searchInputBox" placeholder="Mandarin term">
-      <button class="btn" id="dictionarySearchButton" onclick="searchWebsites()">Search</button>
-    </div>
-    <div class="dict-row">
-      <span class="dict-row-label">Translate</span>
-      <input class="dict-input wide" type="text" id="translateInputBox" placeholder="English to translate">
-      <button class="btn" id="translateButton" onclick="translateWebsites()">Translate</button>
-      <input class="dict-input result" type="text" id="translateDeeplBox" placeholder="DeepL result" readonly>
-      <input class="dict-input status" type="text" id="deeplBoxStatus" placeholder="API initializing..." readonly>
+      <input class="dict-input wide" type="text" id="searchInputBox" placeholder="Translate from EN or ZH">
+      <button class="btn" id="dictionarySearchButton">Search</button>
     </div>
   </div>
 </div>
 
 <div class="dict-footer">
-  <button class="btn btn-ghost" onclick="scrollToTop()">Scroll to top</button>
+  <button class="btn btn-ghost" id="scrollTopButton">Scroll to top</button>
 </div>
 
 <div class="tohide-element" id="dictIntro"></div>
@@ -243,23 +261,24 @@
 <!-- Toggle filter bar -->
 <div class="filter-bar">
   <span class="filter-lang">KR</span>
-  <button class="toggle-btn on" onclick="toggleSource('naverFrame',  this)">Naver</button>
-  <button class="toggle-btn on" onclick="toggleSource('papagoFrame', this)">Papago</button>
+  <button class="toggle-btn on" data-frame="naverFrame">Naver</button>
 
   <div class="filter-sep"></div>
   <span class="filter-lang">JP</span>
-  <button class="toggle-btn on" onclick="toggleSource('weblioFrame', this)">Weblio</button>
+  <button class="toggle-btn on" data-frame="weblioFrame">Weblio</button>
 
   <div class="filter-sep"></div>
   <span class="filter-lang">EN</span>
-  <button class="toggle-btn on" onclick="toggleSource('deeplFrame',  this)">DeepL</button>
-  <button class="toggle-btn on" onclick="toggleSource('forvoFrame',  this)">Forvo</button>
-  <button class="toggle-btn on" onclick="toggleSource('baiduFrame',  this)">Baidu</button>
-  <button class="toggle-btn on" onclick="toggleSource('wikitFrame',  this)">Wiktionary</button>
+  <button class="toggle-btn on" data-frame="deeplCard">DeepL</button>
+  <button class="toggle-btn on" data-frame="wikitFrame">Wiktionary</button>
+  <div class="filter-sep"></div>
+  <a id="forvoLink" href="#" target="_blank" rel="noopener" class="toggle-btn link-btn">Forvo ↗</a>
+  <a id="baiduLink" href="#" target="_blank" rel="noopener" class="toggle-btn link-btn">Baidu ↗</a>
 
   <div class="filter-sep"></div>
   <span class="filter-lang">ZH</span>
-  <button class="toggle-btn on" onclick="toggleSource('hanziFrame',  this)">Hanzi</button>
+  <button class="toggle-btn on" data-frame="hanziFrame">Hanzi</button>
+  <button class="toggle-btn on" data-frame="zdicFrame">Zdic</button>
 </div>
 
 <!-- iframe card grid -->
@@ -268,34 +287,16 @@
     <div class="iframe-card-label"><span class="lang-tag">KR</span> Naver</div>
     <iframe id="naverFrame" src="about:blank" scrolling="yes"></iframe>
   </div>
-  <div class="iframe-card" id="card-papagoFrame">
-    <div class="iframe-card-label"><span class="lang-tag">KR</span> Papago</div>
-    <div class="open-card-body">
-      <p>Korean-Chinese translation with natural language detection</p>
-      <a id="papagoLink" href="#" target="_blank" rel="noopener" class="btn">Open in Papago ↗</a>
-    </div>
-  </div>
   <div class="iframe-card" id="card-weblioFrame">
     <div class="iframe-card-label"><span class="lang-tag">JP</span> Weblio</div>
     <iframe id="weblioFrame" src="about:blank" scrolling="yes"></iframe>
   </div>
-  <div class="iframe-card" id="card-deeplFrame">
+  <div class="iframe-card" id="card-deeplCard">
     <div class="iframe-card-label"><span class="lang-tag">EN</span> DeepL</div>
-    <div class="open-card-body">
-      <p>Full DeepL translation interface with context and alternatives</p>
-      <a id="deeplLink" href="#" target="_blank" rel="noopener" class="btn">Open in DeepL ↗</a>
+    <div class="deepl-result-body">
+      <div id="deeplResultText"></div>
+      <div id="deeplStatus" class="deepl-status"></div>
     </div>
-  </div>
-  <div class="iframe-card" id="card-forvoFrame">
-    <div class="iframe-card-label"><span class="lang-tag">EN</span> Forvo</div>
-    <div class="open-card-body">
-      <p>Native speaker pronunciation recordings</p>
-      <a id="forvoLink" href="#" target="_blank" rel="noopener" class="btn">Open in Forvo ↗</a>
-    </div>
-  </div>
-  <div class="iframe-card" id="card-baiduFrame">
-    <div class="iframe-card-label"><span class="lang-tag">EN</span> Baidu</div>
-    <iframe id="baiduFrame" src="about:blank" scrolling="yes"></iframe>
   </div>
   <div class="iframe-card" id="card-wikitFrame">
     <div class="iframe-card-label"><span class="lang-tag">EN</span> Wiktionary</div>
@@ -305,14 +306,11 @@
     <div class="iframe-card-label"><span class="lang-tag">ZH</span> Hanzi</div>
     <iframe id="hanziFrame" src="about:blank" scrolling="yes"></iframe>
   </div>
+  <div class="iframe-card" id="card-zdicFrame">
+    <div class="iframe-card-label"><span class="lang-tag">ZH</span> Zdic</div>
+    <iframe id="zdicFrame" src="about:blank" scrolling="yes"></iframe>
+  </div>
 </div>
-
-<script>
-  function toggleSource(frameId, btn) {
-    btn.classList.toggle('on');
-    document.getElementById('card-' + frameId).classList.toggle('hidden');
-  }
-</script>
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="./cndictscript.js"></script>
