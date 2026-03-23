@@ -92,9 +92,11 @@ function searchWebsites(){
       document.getElementById("baiduLink").href = "https://fanyi.baidu.com/mtpe-individual/transText?query=" + encodeURIComponent(searchTerm) + "&lang=zh2en";
       document.getElementById("hanziFrame").src = "https://www.qhanzi.com/";
       document.getElementById("zdicLink").href = "https://www.zdic.net/hans/" + encodeURIComponent(searchTerm);
-      document.getElementById("baiduDictFrame").src = "https://dict.baidu.com/s?wd=" + encodeURIComponent(searchTerm);
+      document.getElementById("baiduDictLink").href = "https://dict.baidu.com/s?wd=" + encodeURIComponent(searchTerm);
       // open-tab links (these sites block iframing)
       document.getElementById("forvoLink").href = "https://forvo.com/word/" + encodeURIComponent(searchTerm);
+      deeplStatus.textContent = 'Sending API request...';
+      requestDeepl(searchTerm);
 }
 
 function scrollToTop(){
