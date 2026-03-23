@@ -9,17 +9,18 @@ var deeplStatus = document.getElementById("deeplBoxStatus");
 var textArray;
 
 function requestDeepl(userInput) {
-  
   if (Array.isArray(userInput)) {
-    textArray = userInput; // Use the array directly if it's already an array
+    textArray = userInput;
   } else {
-    textArray = [userInput]; // Wrap the string in an array if it's a single string
+    textArray = [userInput];
   }
 
   var requestData = {
     text: textArray,
     target_lang: 'ZH'
   };
+
+  deeplStatus.placeholder = 'Waiting for API — may take ~30s...';
 
   fetch('https://deeplapi-xx79.onrender.com/translate', {
     method: 'POST',
@@ -31,25 +32,24 @@ function requestDeepl(userInput) {
     body: JSON.stringify(requestData)
   })
   .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
+    if (!response.ok) throw new Error('Network response was not ok');
     return response.json();
   })
   .then(data => {
-    // Parse the JSON response and extract the text field
     const translations = data.translations;
     if (translations && translations.length > 0) {
       const translatedText = translations[0].text;
       console.log('Translated Text:', translatedText);
       deeplOutput.value = translatedText;
-      deeplStatus.placeholder = 'DeepL API Status: Ready, idle';
-      return translatedText;
+      deeplStatus.placeholder = 'Ready';
     } else {
       throw new Error('No translations found in the response');
     }
   })
-  .catch(error => console.error('Error:', error));
+  .catch(error => {
+    deeplStatus.placeholder = 'API error: ' + error.message;
+    console.error('Error:', error);
+  });
 }
 
 
@@ -73,23 +73,7 @@ dictButton.addEventListener("click", function(){
   console.log(str);
 });
 dictSearchBox.addEventListener("keydown",function(event){
-  //if ENTER, press button
-  if(event.keyCode == 13){
-    dictButton.click();
-  }
-});
-
-var dictButton = document.getElementById("dictionarySearchButton");
-var dictSearchBox = document.getElementById("searchInputBox");
-dictButton.addEventListener("click", function(){
-  var str = dictSearchBox.value;
-  console.log(str);
-});
-dictSearchBox.addEventListener("keydown",function(event){
-  //if ENTER, press button
-  if(event.keyCode == 13){
-    dictButton.click();
-  }
+  if(event.keyCode == 13){ dictButton.click(); }
 });
 
 var translateButton = document.getElementById("translateButton");
@@ -110,21 +94,19 @@ function searchWebsites(){
       // Update the source of each iframe to include the search term
       document.getElementById("naverFrame").src = "https://zh.dict.naver.com/#/search?query=" + encodeURIComponent(searchTerm);
       document.getElementById("weblioFrame").src = "https://cjjc.weblio.jp/content/" + encodeURIComponent(searchTerm);
-      //document.getElementById("reversoFrame").src = "https://context.reverso.net/%E7%BF%BB%E8%AF%91/%E4%B8%AD%E6%96%87-%E8%8B%B1%E8%AF%AD/" + encodeURIComponent(searchTerm);
       document.getElementById("wikitFrame").src = "https://en.wiktionary.org/wiki/" + encodeURIComponent(searchTerm);
-      document.getElementById("forvoFrame").src = "https://forvo.com/word/" + encodeURIComponent(searchTerm);
-      document.getElementById("deeplFrame").src = "https://www.deepl.com/translator#zh/en/" + encodeURIComponent(searchTerm);
-      document.getElementById("papagoFrame").src = "https://papago.naver.com/?sk=zh-CN&tk=en&st=" + encodeURIComponent(searchTerm);
       document.getElementById("baiduFrame").src = "https://fanyi.baidu.com/mtpe-individual/multimodal?query=" + encodeURIComponent(searchTerm) + "&lang=zh2en";
       document.getElementById("hanziFrame").src = "https://www.qhanzi.com/";
-      //deeplStatus.placeholder = 'Sending API request...';
-      //requestDeepl(searchTerm);
+      // open-tab links (these sites block iframing)
+      document.getElementById("papagoLink").href = "https://papago.naver.com/?sk=zh-CN&tk=en&st=" + encodeURIComponent(searchTerm);
+      document.getElementById("deeplLink").href = "https://www.deepl.com/translator#zh/en/" + encodeURIComponent(searchTerm);
+      document.getElementById("forvoLink").href = "https://forvo.com/word/" + encodeURIComponent(searchTerm);
 }
 
 function translateWebsites(){
       var translateInput = document.getElementById("translateInputBox").value;
-      document.getElementById("deeplFrame").src = "https://www.deepl.com/translator#zh/en/" + encodeURIComponent(translateInput);
-      document.getElementById("papagoFrame").src = "https://papago.naver.com/?sk=zh-CN&tk=en&st=" + encodeURIComponent(translateInput);
+      document.getElementById("deeplLink").href = "https://www.deepl.com/translator#zh/en/" + encodeURIComponent(translateInput);
+      document.getElementById("papagoLink").href = "https://papago.naver.com/?sk=zh-CN&tk=en&st=" + encodeURIComponent(translateInput);
       document.getElementById("baiduFrame").src = "https://fanyi.baidu.com/mtpe-individual/multimodal?query=" + encodeURIComponent(translateInput) + "&lang=zh2en";
       deeplStatus.placeholder = 'Sending API request...';
       requestDeepl(translateInput);

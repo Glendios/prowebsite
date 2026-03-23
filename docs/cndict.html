@@ -8,6 +8,201 @@
   <meta content="Search across multiple dictionaries simultaneously" property="og:description">
   <link rel="stylesheet" href="./cndictstyle.css">
   <link rel="icon" href="./assets/elysigicon.png" type="image/png">
+  <style>
+    .dict-header {
+      padding: 20px 24px 16px;
+    }
+
+    .dict-header h1 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin: 0 0 2px;
+    }
+
+    .dict-header .subtitle {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      margin: 0 0 16px;
+    }
+
+    .dict-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .dict-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .dict-row-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      width: 60px;
+      flex-shrink: 0;
+    }
+
+    .dict-input {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.95rem;
+      padding: 8px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg);
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+
+    .dict-input:focus { border-color: var(--accent); }
+    .dict-input[readonly] {
+      background: var(--surface);
+      color: var(--text-muted);
+      cursor: default;
+      font-size: 0.88rem;
+    }
+
+    .dict-input.wide   { width: 220px; }
+    .dict-input.result { width: 180px; }
+    .dict-input.status { width: 160px; }
+
+    .dict-footer {
+      display: flex;
+      justify-content: flex-end;
+      padding: 6px 24px 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── Toggle filter bar ──────────────── */
+
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 10px 16px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .filter-lang {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding-right: 2px;
+    }
+
+    .filter-sep {
+      width: 1px;
+      height: 18px;
+      background: var(--border);
+      margin: 0 4px;
+    }
+
+    .toggle-btn {
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 50px;
+      padding: 3px 12px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .toggle-btn.on {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .toggle-btn:hover { border-color: var(--accent); }
+
+    /* ── iframe card grid ───────────────── */
+
+    .cards-wrap {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--border);
+    }
+
+    .iframe-card {
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      min-width: 0;
+    }
+
+    .iframe-card.hidden { display: none; }
+
+    .iframe-card-label {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 6px 12px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .lang-tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1px 5px;
+      color: var(--accent-dark);
+    }
+
+    .iframe-card iframe {
+      width: 100%;
+      height: calc(100vh - 260px);
+      min-height: 480px;
+      border: none;
+      display: block;
+    }
+
+    .open-card-body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex: 1;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .open-card-body p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin: 0;
+    }
+
+    .open-card-body .btn {
+      font-size: 0.85rem;
+    }
+
+    .open-card-body .btn[href="#"] {
+      opacity: 0.4;
+      pointer-events: none;
+    }
+  </style>
 </head>
 <body>
 
@@ -21,43 +216,103 @@
 
 <div class="dict-header">
   <h1>Mandarin Dictionary Aggregator</h1>
-  <p>Search across all dictionaries simultaneously — try <strong>快乐</strong></p>
+  <p class="subtitle">Search across all dictionaries simultaneously — try <strong>快乐</strong></p>
 
-  <div class="dict-controls">
-    <input class="dict-input" type="text" id="searchInputBox" placeholder="Search term (Mandarin)">
-    <button class="btn" id="dictionarySearchButton" onclick="searchWebsites()">Search</button>
-
-    <div class="dict-divider"></div>
-
-    <input class="dict-input" type="text" id="translateInputBox" placeholder="English to translate">
-    <button class="btn" id="translateButton" onclick="translateWebsites()">Translate</button>
-    <input class="dict-input" type="text" id="translateDeeplBox" placeholder="DeepL result" readonly>
-    <input class="dict-input" type="text" id="deeplBoxStatus" placeholder="API initializing..." readonly>
-
-    <div class="dict-divider"></div>
-
-    <button class="btn btn-ghost" onclick="scrollToTop()">Scroll To Top</button>
+  <div class="dict-rows">
+    <div class="dict-row">
+      <span class="dict-row-label">Search</span>
+      <input class="dict-input wide" type="text" id="searchInputBox" placeholder="Mandarin term">
+      <button class="btn" id="dictionarySearchButton" onclick="searchWebsites()">Search</button>
+    </div>
+    <div class="dict-row">
+      <span class="dict-row-label">Translate</span>
+      <input class="dict-input wide" type="text" id="translateInputBox" placeholder="English to translate">
+      <button class="btn" id="translateButton" onclick="translateWebsites()">Translate</button>
+      <input class="dict-input result" type="text" id="translateDeeplBox" placeholder="DeepL result" readonly>
+      <input class="dict-input status" type="text" id="deeplBoxStatus" placeholder="API initializing..." readonly>
+    </div>
   </div>
 </div>
 
-<div class="tohide-element" id="dictIntro">
-  <!-- auto-hidden after 3s by JS -->
+<div class="dict-footer">
+  <button class="btn btn-ghost" onclick="scrollToTop()">Scroll to top</button>
 </div>
 
-<div class="content iframe-container">
-  <iframe id="naverFrame" width="28%" src="about:blank" scrolling="yes"></iframe>
-  <iframe id="weblioFrame" width="41%" src="about:blank" scrolling="yes"></iframe>
-  <iframe id="wikitFrame" width="30%" src="about:blank" scrolling="yes"></iframe>
+<div class="tohide-element" id="dictIntro"></div>
+
+<!-- Toggle filter bar -->
+<div class="filter-bar">
+  <span class="filter-lang">KR</span>
+  <button class="toggle-btn on" onclick="toggleSource('naverFrame',  this)">Naver</button>
+  <button class="toggle-btn on" onclick="toggleSource('papagoFrame', this)">Papago</button>
+
+  <div class="filter-sep"></div>
+  <span class="filter-lang">JP</span>
+  <button class="toggle-btn on" onclick="toggleSource('weblioFrame', this)">Weblio</button>
+
+  <div class="filter-sep"></div>
+  <span class="filter-lang">EN</span>
+  <button class="toggle-btn on" onclick="toggleSource('deeplFrame',  this)">DeepL</button>
+  <button class="toggle-btn on" onclick="toggleSource('forvoFrame',  this)">Forvo</button>
+  <button class="toggle-btn on" onclick="toggleSource('baiduFrame',  this)">Baidu</button>
+  <button class="toggle-btn on" onclick="toggleSource('wikitFrame',  this)">Wiktionary</button>
+
+  <div class="filter-sep"></div>
+  <span class="filter-lang">ZH</span>
+  <button class="toggle-btn on" onclick="toggleSource('hanziFrame',  this)">Hanzi</button>
 </div>
-<div class="iframe-container">
-  <iframe id="forvoFrame" width="12%" src="about:blank" scrolling="yes"></iframe>
-  <iframe id="papagoFrame" width="33%" src="about:blank" scrolling="yes"></iframe>
-  <iframe id="baiduFrame" width="54%" src="about:blank" scrolling="yes"></iframe>
+
+<!-- iframe card grid -->
+<div class="cards-wrap content">
+  <div class="iframe-card" id="card-naverFrame">
+    <div class="iframe-card-label"><span class="lang-tag">KR</span> Naver</div>
+    <iframe id="naverFrame" src="about:blank" scrolling="yes"></iframe>
+  </div>
+  <div class="iframe-card" id="card-papagoFrame">
+    <div class="iframe-card-label"><span class="lang-tag">KR</span> Papago</div>
+    <div class="open-card-body">
+      <p>Korean-Chinese translation with natural language detection</p>
+      <a id="papagoLink" href="#" target="_blank" rel="noopener" class="btn">Open in Papago ↗</a>
+    </div>
+  </div>
+  <div class="iframe-card" id="card-weblioFrame">
+    <div class="iframe-card-label"><span class="lang-tag">JP</span> Weblio</div>
+    <iframe id="weblioFrame" src="about:blank" scrolling="yes"></iframe>
+  </div>
+  <div class="iframe-card" id="card-deeplFrame">
+    <div class="iframe-card-label"><span class="lang-tag">EN</span> DeepL</div>
+    <div class="open-card-body">
+      <p>Full DeepL translation interface with context and alternatives</p>
+      <a id="deeplLink" href="#" target="_blank" rel="noopener" class="btn">Open in DeepL ↗</a>
+    </div>
+  </div>
+  <div class="iframe-card" id="card-forvoFrame">
+    <div class="iframe-card-label"><span class="lang-tag">EN</span> Forvo</div>
+    <div class="open-card-body">
+      <p>Native speaker pronunciation recordings</p>
+      <a id="forvoLink" href="#" target="_blank" rel="noopener" class="btn">Open in Forvo ↗</a>
+    </div>
+  </div>
+  <div class="iframe-card" id="card-baiduFrame">
+    <div class="iframe-card-label"><span class="lang-tag">EN</span> Baidu</div>
+    <iframe id="baiduFrame" src="about:blank" scrolling="yes"></iframe>
+  </div>
+  <div class="iframe-card" id="card-wikitFrame">
+    <div class="iframe-card-label"><span class="lang-tag">EN</span> Wiktionary</div>
+    <iframe id="wikitFrame" src="about:blank" scrolling="yes"></iframe>
+  </div>
+  <div class="iframe-card" id="card-hanziFrame">
+    <div class="iframe-card-label"><span class="lang-tag">ZH</span> Hanzi</div>
+    <iframe id="hanziFrame" src="about:blank" scrolling="yes"></iframe>
+  </div>
 </div>
-<div class="iframe-container">
-  <iframe id="deeplFrame" width="40%" src="about:blank" scrolling="yes"></iframe>
-  <iframe id="hanziFrame" width="40%" src="about:blank" scrolling="yes"></iframe>
-</div>
+
+<script>
+  function toggleSource(frameId, btn) {
+    btn.classList.toggle('on');
+    document.getElementById('card-' + frameId).classList.toggle('hidden');
+  }
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="./cndictscript.js"></script>
