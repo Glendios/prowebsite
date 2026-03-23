@@ -91,7 +91,8 @@ function searchWebsites(){
       document.getElementById("wikitFrame").src = "https://en.wiktionary.org/wiki/" + encodeURIComponent(searchTerm);
       document.getElementById("baiduLink").href = "https://fanyi.baidu.com/mtpe-individual/transText?query=" + encodeURIComponent(searchTerm) + "&lang=zh2en";
       document.getElementById("hanziFrame").src = "https://www.qhanzi.com/";
-      document.getElementById("zdicFrame").src = "https://www.zdic.net/hans/" + encodeURIComponent(searchTerm);
+      document.getElementById("zdicLink").href = "https://www.zdic.net/hans/" + encodeURIComponent(searchTerm);
+      document.getElementById("baiduDictFrame").src = "https://dict.baidu.com/s?wd=" + encodeURIComponent(searchTerm);
       // open-tab links (these sites block iframing)
       document.getElementById("forvoLink").href = "https://forvo.com/word/" + encodeURIComponent(searchTerm);
 }
