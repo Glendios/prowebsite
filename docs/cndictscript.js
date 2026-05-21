@@ -1,13 +1,8 @@
-//cndictscript.js
-//import {requestDeepl} from './cndictmodule.js';
-//const { requestDeepl } = require('./cndictmodule.js');
-
-//const axios = require('axios');
-
 var deeplOutput = document.getElementById("deeplResultText");
 var deeplStatus = document.getElementById("deeplStatus");
 
 function requestDeepl(userInput) {
+  var textArray;
   if (Array.isArray(userInput)) {
     textArray = userInput;
   } else {
@@ -25,7 +20,6 @@ function requestDeepl(userInput) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'User-Agent': 'KRSK CNDict/1.0.0',
       'checker-header': 'translate-please'
     },
     body: JSON.stringify(requestData)

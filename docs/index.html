@@ -5,64 +5,151 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Phantom Tools</title>
   <meta content="Phantom Tools" property="og:title">
-  <meta content="Tools, automation and more" property="og:description">
-  <link rel="stylesheet" href="./cndictstyle.css">
+  <meta content="Automation projects, language tools, and workflow software." property="og:description">
+  <link rel="stylesheet" href="./cndictstyle.css?v=20260520">
   <link rel="icon" href="./assets/elysigicon.png" type="image/png">
 </head>
 <body>
 
 <nav class="navbar">
-  <a class="navbar-brand" href="/">phantom.moe</a>
+  <a class="navbar-brand" href="./index.html">phantom.moe</a>
   <ul class="navbar-links">
-    <li><a href="cndict">Dictionary</a></li>
-    <li><a href="zhprocessor">ZH Pipeline</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="./work.html">About</a></li>
+    <li><a href="https://github.com/Glendios" target="_blank" rel="noopener">GitHub</a></li>
   </ul>
 </nav>
 
-<div class="page-content">
-
-  <div class="hero">
-    <h1>Projects & tools</h1>
-    <p>Personal projects, automation tools, and experiments.</p>
-  </div>
-
-  <div class="cards-grid">
-
-    <div class="card">
-      <p class="card-title">Screen Trigger Automation</p>
-      <p class="card-desc">Background automation using OpenCV template matching and the Win32 API to detect and respond to on-screen UI elements without requiring window focus.</p>
-      <div class="card-actions">
-        <a href="screentrigger" class="btn">Watch Demo →</a>
+<main>
+  <section class="hero hero-portfolio">
+    <div class="hero-copy">
+      <p class="eyebrow">Automation · language tools · workflow software</p>
+      <h1>Practical tools for messy workflows.</h1>
+      <p class="hero-lede">A small public collection of automation projects, language utilities, and workflow experiments. The strongest work here focuses on turning repetitive manual processes into structured, reviewable software flows.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn">View projects</a>
+        <a href="https://github.com/Glendios" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
       </div>
     </div>
 
-    <div class="card">
-      <p class="card-title">Hotel Reservation Monitor</p>
-      <p class="card-desc">Playwright automation tool that monitors booking availability in competitive environments, with network response interception, priority fallback logic, and real-time Discord alerts.</p>
-      <div class="card-actions">
-        <a href="hotelmonitor" class="btn">Watch Demo →</a>
+    <div class="hero-proof" aria-label="Portfolio highlights">
+      <div class="proof-stat">
+        <span>3 hours</span>
+        <strong>to 5 minutes</strong>
+        <p>Reduced one recurring dental case-intake workflow while preserving staff review.</p>
+      </div>
+      <div class="proof-grid">
+        <span>OCR parsing</span>
+        <span>Playwright retrieval</span>
+        <span>Access handoff</span>
+        <span>Supabase sync</span>
+        <span>OpenCV triggers</span>
+        <span>Windows tooling</span>
       </div>
     </div>
+  </section>
 
-    <div class="card">
-      <p class="card-title">Mandarin Dictionary Aggregator</p>
-      <p class="card-desc">Search across Naver, Weblio, Wiktionary, Forvo, Papago, Baidu, DeepL, and more, all at once. Built for Mandarin learners and translators.</p>
-      <div class="card-actions">
-        <a href="cndict" class="btn">Open Tool →</a>
-      </div>
+  <section class="section-band" id="projects">
+    <div class="section-heading">
+      <p class="eyebrow">Selected projects</p>
+      <h2>Automation and workflow tools</h2>
+      <p>Project-first notes for the strongest tools on the site, with practical details for anyone who wants to inspect the engineering behind them.</p>
     </div>
 
-    <div class="card">
-      <span class="badge badge-mint">Coming Soon</span>
-      <p class="card-title">Chinese Localization Pipeline</p>
-      <p class="card-desc">Process audio from media and generate Chinese subtitles with NLP, multi-LLM translation, and optional pinyin overlays. Containerized via Docker.</p>
-      <div class="card-actions">
-        <a href="zhprocessor" class="btn btn-ghost">Learn More</a>
+    <div class="project-list">
+      <article class="project-feature">
+        <div class="project-copy">
+          <p class="project-kicker">Python automation · OCR · Access workflow</p>
+          <h3>Dental Lab Automation</h3>
+          <p>Local-first case-intake workflow for a dental lab using scanned slips, browser-retrieved digital cases, parsing, validation, duplicate warnings, and controlled handoff into an Access-based lab management process.</p>
+          <ul class="impact-list">
+            <li>Converted scanned paper and portal case records into structured review fields.</li>
+            <li>Kept human verification before final case creation for ambiguous handwriting and inconsistent metadata.</li>
+            <li>Reduced one recurring workflow from about 3 hours to about 5 minutes.</li>
+          </ul>
+          <div class="card-actions">
+            <a href="./dental-lab-automation.html" class="btn">Read case study</a>
+          </div>
+        </div>
+        <div class="workflow-visual" aria-label="Dental lab intake workflow">
+          <div>Scan or portal notice</div>
+          <div>OCR and parse</div>
+          <div>Validate and dedupe</div>
+          <div>Staff review</div>
+          <div>Access handoff</div>
+        </div>
+      </article>
+
+      <article class="project-feature project-feature-media">
+        <div class="project-copy">
+          <span class="badge badge-lavender">Beta</span>
+          <p class="project-kicker">React · TypeScript · Supabase</p>
+          <h3>Cross-Device Task Dashboard</h3>
+          <p>Hosted task management PWA with Google OAuth, Supabase-backed account storage, local/demo fallback, stable ordering, backup/restore, and desktop/mobile sync boundaries. Currently usable as a beta while it goes through fast iteration.</p>
+          <ul class="impact-list">
+            <li>Implemented typed task-to-row mapping, cloud upserts, remote retrieval, delete handling, and local fallback.</li>
+            <li>Built around realistic task categories, sync recovery, and responsive workflow planning.</li>
+          </ul>
+          <div class="card-actions">
+            <a href="https://tasks.phantom.moe/" target="_blank" rel="noopener" class="btn">Open beta</a>
+            <a href="./task-dashboard.html" class="btn btn-ghost">Details</a>
+          </div>
+        </div>
+        <figure class="project-shot">
+          <img src="./assets/task-dashboard-preview.png" alt="Cross-Device Task Dashboard demo board screenshot">
+        </figure>
+      </article>
+
+      <div class="cards-grid compact-grid">
+        <article class="card">
+          <p class="project-kicker">Python · Playwright · monitoring</p>
+          <h3 class="card-title">High-Demand Reservation Tool</h3>
+          <p class="card-desc">Browser automation that monitors availability through page state and network responses, then alerts when a preferred match appears.</p>
+          <div class="card-actions">
+            <a href="./hotelmonitor.html" class="btn btn-ghost">Read case study</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <p class="project-kicker">Python · OpenCV · Windows API</p>
+          <h3 class="card-title">Screen State Detection</h3>
+          <p class="card-desc">Desktop automation tool that detects visual UI states with template matching and triggers configured mouse or keyboard responses.</p>
+          <div class="card-actions">
+            <a href="./screentrigger.html" class="btn btn-ghost">Read case study</a>
+          </div>
+        </article>
       </div>
     </div>
+  </section>
 
-  </div>
-</div>
+  <section class="section-band section-muted" id="tools">
+    <div class="section-heading">
+      <p class="eyebrow">Public utilities</p>
+      <h2>Language and workflow tools</h2>
+      <p>Smaller tools that are useful live demos, but secondary to the main automation portfolio.</p>
+    </div>
+
+    <div class="cards-grid">
+      <article class="card">
+        <p class="card-title">Mandarin Dictionary Aggregator</p>
+        <p class="card-desc">Searches Naver, Weblio, Wiktionary, Forvo, Baidu, DeepL, and other dictionary sources from one interface.</p>
+        <div class="card-actions">
+          <a href="./cndict.html" class="btn">Open tool</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <span class="badge badge-amber">Prototype</span>
+        <p class="card-title">Chinese Localization Pipeline</p>
+        <p class="card-desc">Planned media-to-subtitle pipeline with audio recognition, multi-model translation review, and optional pinyin overlays.</p>
+        <div class="card-actions">
+          <a href="./zhprocessor.html" class="btn btn-ghost">Project note</a>
+        </div>
+      </article>
+    </div>
+  </section>
+</main>
 
 </body>
 </html>

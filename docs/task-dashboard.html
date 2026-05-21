@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cross-Device Task Dashboard | Phantom Tools</title>
+  <meta content="Cross-Device Task Dashboard" property="og:title">
+  <meta content="React, TypeScript, Supabase, Google OAuth, and cross-device task sync." property="og:description">
+  <link rel="stylesheet" href="./cndictstyle.css?v=20260520">
+  <link rel="icon" href="./assets/elysigicon.png" type="image/png">
+</head>
+<body>
+
+<nav class="navbar">
+  <a class="navbar-brand" href="./index.html">phantom.moe</a>
+  <ul class="navbar-links">
+    <li><a href="./index.html#projects">Projects</a></li>
+    <li><a href="./index.html#tools">Tools</a></li>
+    <li><a href="./work.html">About</a></li>
+    <li><a href="https://github.com/Glendios/cross-device-task-dashboard" target="_blank" rel="noopener">GitHub</a></li>
+  </ul>
+</nav>
+
+<main class="project-page">
+  <header>
+    <p class="eyebrow">Full-stack product project</p>
+    <h1>Cross-Device Task Dashboard</h1>
+    <p class="project-lede">A hosted beta task dashboard that supports account-scoped task sync through Supabase, with local/demo fallback, backup/restore, stable ordering, and workflow-oriented task views. It is functional now and under fast iteration.</p>
+    <div class="project-meta">
+      <span>Beta</span>
+      <span>React</span>
+      <span>TypeScript</span>
+      <span>Supabase</span>
+      <span>Google OAuth</span>
+      <span>Vite</span>
+      <span>Playwright smoke tests</span>
+    </div>
+    <div class="hero-actions project-actions">
+      <a href="https://tasks.phantom.moe/" target="_blank" rel="noopener" class="btn">Open beta</a>
+      <a href="https://github.com/Glendios/cross-device-task-dashboard" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+    </div>
+  </header>
+
+  <figure class="project-shot">
+    <img src="./assets/task-dashboard-preview.png" alt="Cross-Device Task Dashboard demo board screenshot">
+  </figure>
+
+  <section class="two-column">
+    <div class="project-panel">
+      <h2>Engineering highlights</h2>
+      <ul class="features-list">
+        <li>Implemented Google OAuth and Supabase-backed account storage for cross-device task persistence.</li>
+        <li>Built typed mapping between local task objects and remote database rows.</li>
+        <li>Handled cloud upserts, remote retrieval, deletes, sort order, and local/demo fallback behavior.</li>
+        <li>Added backup and restore flows for user-controlled data portability.</li>
+      </ul>
+    </div>
+
+    <div class="project-panel">
+      <h2>Beta status</h2>
+      <p>The app is hosted and usable at tasks.phantom.moe, but it should be presented as a beta because the UI, sync behavior, and code organization are still moving quickly. The repo already has safeguards, tests, and Supabase sync; the next polish target is a cleaner code split and a sharper onboarding path for first-time users.</p>
+      <div class="tech-tags">
+        <span class="tech-tag">Frontend</span>
+        <span class="tech-tag">Sync logic</span>
+        <span class="tech-tag">Product UX</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+</body>
+</html>
