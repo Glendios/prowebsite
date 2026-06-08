@@ -4,9 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mandarin Dictionary Aggregator | Phantom Tools</title>
+  <meta name="description" content="Search Mandarin dictionary sources including Naver, Weblio, Wiktionary, Baidu, Forvo, Hanzi references, and DeepL from one tool.">
   <meta content="Mandarin Dictionary Aggregator" property="og:title">
   <meta content="Search across multiple dictionaries simultaneously" property="og:description">
-  <link rel="stylesheet" href="./cndictstyle.css?v=20260520">
+  <meta content="https://phantom.moe/cndict.html" property="og:url">
+  <meta content="https://phantom.moe/assets/task-dashboard-preview.png" property="og:image">
+  <link rel="canonical" href="https://phantom.moe/cndict.html">
+  <link rel="stylesheet" href="./cndictstyle.css?v=20260608">
   <link rel="icon" href="./assets/elysigicon.png" type="image/png">
 </head>
 <body>
@@ -68,29 +72,30 @@
 <div class="cards-wrap content">
   <div class="iframe-card" id="card-naverFrame">
     <div class="iframe-card-label"><span class="lang-tag">KR</span> Naver</div>
-    <iframe id="naverFrame" src="about:blank" scrolling="yes"></iframe>
+    <iframe id="naverFrame" title="Naver Chinese dictionary results" src="about:blank" scrolling="yes"></iframe>
   </div>
   <div class="iframe-card" id="card-weblioFrame">
     <div class="iframe-card-label"><span class="lang-tag">JP</span> Weblio</div>
-    <iframe id="weblioFrame" src="about:blank" scrolling="yes"></iframe>
+    <iframe id="weblioFrame" title="Weblio Chinese dictionary results" src="about:blank" scrolling="yes"></iframe>
   </div>
   <div class="iframe-card" id="card-deeplCard">
     <div class="iframe-card-label"><span class="lang-tag">EN</span> DeepL</div>
     <div class="deepl-result-body">
       <div id="deeplResultText"></div>
-      <div id="deeplStatus" class="deepl-status"></div>
+      <div id="deeplStatus" class="deepl-status" aria-live="polite"></div>
+      <a id="deeplFallbackLink" href="https://www.deepl.com/translator#auto/zh/" target="_blank" rel="noopener" class="toggle-btn link-btn deepl-link hidden">Open DeepL</a>
     </div>
   </div>
   <div class="iframe-card" id="card-wikitFrame">
     <div class="iframe-card-label"><span class="lang-tag">EN</span> Wiktionary</div>
-    <iframe id="wikitFrame" src="about:blank" scrolling="yes"></iframe>
+    <iframe id="wikitFrame" title="Wiktionary results" src="about:blank" scrolling="yes"></iframe>
   </div>
   <div class="iframe-card" id="card-hanziFrame">
     <div class="iframe-card-label"><span class="lang-tag">ZH</span> Hanzi</div>
-    <iframe id="hanziFrame" src="about:blank" scrolling="yes"></iframe>
+    <iframe id="hanziFrame" title="Hanzi reference lookup" src="about:blank" scrolling="yes"></iframe>
   </div>
 </div>
 
-<script src="./cndictscript.js"></script>
+<script src="./cndictscript.js?v=20260608"></script>
 </body>
 </html>

@@ -1,5 +1,11 @@
 var deeplOutput = document.getElementById("deeplResultText");
 var deeplStatus = document.getElementById("deeplStatus");
+var deeplFallbackLink = document.getElementById("deeplFallbackLink");
+
+function setDeeplFallback(userInput) {
+  deeplFallbackLink.href = "https://www.deepl.com/translator#auto/zh/" + encodeURIComponent(userInput);
+  deeplFallbackLink.classList.remove("hidden");
+}
 
 function requestDeepl(userInput) {
   var textArray;
@@ -15,6 +21,8 @@ function requestDeepl(userInput) {
   };
 
   deeplStatus.textContent = 'Waiting for API — may take ~30s...';
+  deeplOutput.textContent = '';
+  setDeeplFallback(textArray[0]);
 
   fetch('https://deeplapi-xx79.onrender.com/translate', {
     method: 'POST',
@@ -32,16 +40,14 @@ function requestDeepl(userInput) {
     const translations = data.translations;
     if (translations && translations.length > 0) {
       const translatedText = translations[0].text;
-      console.log('Translated Text:', translatedText);
       deeplOutput.textContent = translatedText;
       deeplStatus.textContent = 'Ready';
     } else {
       throw new Error('No translations found in the response');
     }
   })
-  .catch(error => {
-    deeplStatus.textContent = 'API error: ' + error.message;
-    console.error('Error:', error);
+  .catch(() => {
+    deeplStatus.textContent = 'DeepL proxy unavailable in this browser. Use the DeepL link below.';
   });
 }
 
@@ -74,11 +80,17 @@ var dictButton = document.getElementById("dictionarySearchButton");
 var dictSearchBox = document.getElementById("searchInputBox");
 dictButton.addEventListener("click", searchWebsites);
 dictSearchBox.addEventListener("keydown", function(event) {
-  if (event.keyCode == 13) { dictButton.click(); }
+  if (event.key === 'Enter') { dictButton.click(); }
 });
 
 function searchWebsites(){
-      var searchTerm = document.getElementById("searchInputBox").value;
+      var searchTerm = document.getElementById("searchInputBox").value.trim();
+      if (!searchTerm) {
+        deeplOutput.textContent = '';
+        deeplStatus.textContent = 'Enter a word or phrase to search.';
+        deeplFallbackLink.classList.add("hidden");
+        return;
+      }
       // Update the source of each iframe to include the search term
       document.getElementById("naverFrame").src = "https://zh.dict.naver.com/#/search?query=" + encodeURIComponent(searchTerm);
       document.getElementById("weblioFrame").src = "https://cjjc.weblio.jp/content/" + encodeURIComponent(searchTerm);
@@ -94,26 +106,5 @@ function searchWebsites(){
 }
 
 function scrollToTop(){
-  // window.scrollTo(xCoord, yCoord);
   window.scrollTo(0,0);
-}
-
-function scrollToTopFrame(iframeId){
-  var iframe = document.getElementById(iframeId);
-  iframe.contentWindow.scrollTo(0,0);
-  //iframe.contentWindow.scrollBy(0, -iframeWindow.pageYOffset);
-}
-
-function scrollToTopIframes() {
-    //var iframeWindow = iframe.contentWindow;
-    //scrollToTopFrame(naverFrame);
-    scrollToTopFrame('weblioFrame');
-    scrollToTopFrame("wikitFrame");
-    var iframeArray = ['naverFrame','weblioFrame','wikitFrame','forvoFrame'];
-    iframeArray.forEach(scrollToTopFrame);
-    
-}
-
-function scrollDown(){
-  window.scroll(0,window.scrollY+50);
 }

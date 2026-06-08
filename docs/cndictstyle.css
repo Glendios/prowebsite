@@ -714,6 +714,14 @@ a:hover {
   font-size: 0.78rem;
 }
 
+.deepl-link {
+  align-self: flex-start;
+}
+
+.deepl-link.hidden {
+  display: none;
+}
+
 .tohide-element {
   overflow: hidden;
   max-height: 200px;
