@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "release": "2026.10.04.1",
+  "release": "2026.10.05.1",
   "minecraft": "1.21.11",
   "wynntils": "4.1.0",
   "download": "https://phantom.moe/wynncraft-addons/",
@@ -31,15 +31,15 @@
     },
     {
       "id": "wynn_party_fixes",
-      "version": "1.1.1",
-      "file": "party-fixes-1.1.1.jar",
-      "sha256": "2d447bb4e70eebfd9630e3d1a1708297d6378b8be6dc196a27f60c7ea7d948a4"
+      "version": "1.1.2",
+      "file": "party-fixes-1.1.2.jar",
+      "sha256": "f99ae56710a4e159cc1ef5e593bb0f8c0b7945358fd807fdaf5c0922ed8f6a04"
     },
     {
       "id": "wynn_quest_guide",
-      "version": "1.2.1",
-      "file": "quest-guide-1.2.1.jar",
-      "sha256": "dfa9be8a80c5febf355b1be58dac0f20f2f6845ce960928e88bdfbcb72382639"
+      "version": "1.2.2",
+      "file": "quest-guide-1.2.2.jar",
+      "sha256": "9af10d76ab39a59f6cdc8bd4160e3e3e0eae82509fbf72a20e838d23c4756f98"
     },
     {
       "id": "wynn_update_watcher",
