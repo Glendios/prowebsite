@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Compare Wynncraft item prices, levels and acquisition sources. Filter low-level drops, chest loot, seasonal items and more.">
+  <title>Wynncraft Market Explorer</title><link rel="stylesheet" href="style.css">
+  <script defer src="data.js"></script><script defer src="model.js"></script><script defer src="app.js"></script>
+</head>
+<body>
+  <header><a class="brand" href="./">Wynncraft <strong>Market Explorer</strong></a><a href="https://wynnventory.com/" target="_blank" rel="noopener">Prices from Wynnventory ↗</a></header>
+  <main>
+    <div class="intro"><div><h1>Find what’s worth picking up.</h1><p>Item prices, level requirements, and where to find them.</p></div><button id="export" type="button">Export results ↓</button></div>
+    <section class="controls" aria-label="Item filters">
+      <div class="primary"><label class="search">Search items or sources<input id="query" type="search" placeholder="Rarity, dungeon, merchant…" autocomplete="off"></label>
+        <fieldset><legend>Item level</legend><input aria-label="Minimum level" id="min" type="number" min="0" max="999" value="1"><span>to</span><input aria-label="Maximum level" id="max" type="number" min="0" max="999" value="40"></fieldset>
+        <label>Level type<select id="basis"><option>Combat</option><option>Crafting</option><option>Gathering</option><option>All</option></select></label>
+        <label>Price measure<select id="metric"><option value="average_price">Average asking price</option><option value="average_mid_80_percent_price">Trimmed average (middle 80%)</option><option value="lowest_price">Lowest observed asking price</option><option value="highest_price">Highest observed asking price</option><option value="unidentified_average_mid_80_percent_price">Unidentified trimmed average</option></select></label>
+      </div>
+      <div class="secondary"><label>Item category<select id="category"><option value="">All categories</option></select></label><label>Rarity<select id="rarity"><option value="">All rarities</option></select></label><label>Acquisition<select id="source"><option value="">All sources</option></select></label><label>Trade restriction<select id="trade"><option value="">Any</option><option value="tradable">No known restriction</option><option value="restricted">Restricted</option></select></label><label>Min. observations<input id="observations" type="number" min="0" step="1" value="0"></label></div>
+      <div class="presets"><button type="button" id="low">Combat level 1–40</button><button type="button" id="all">All items & levels</button><label class="check"><input id="priced" type="checkbox">With a price only</label><label class="check"><input id="unknown" type="checkbox">Include unknown levels</label><button id="reset" type="button">Reset filters</button></div>
+    </section>
+    <div class="context"><p><strong>Asking prices, not confirmed sales.</strong> Prices combine different stat rolls. An expensive listing is not proof of demand or profit per hour.</p><p id="dates">Loading snapshot…</p></div>
+    <div class="results-bar"><div><strong id="result-count" aria-live="polite"></strong><span id="coverage"></span></div><label>Sort<select id="sort"><option value="price:desc">Price: high → low</option><option value="price:asc">Price: low → high</option><option value="level:desc">Level: high → low</option><option value="level:asc">Level: low → high</option><option value="observations:desc">Observations: high → low</option><option value="name:asc">Name: A → Z</option></select></label></div>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Item prices and acquisition table, scroll horizontally on smaller screens">
+      <table><caption class="sr-only">Item prices in emeralds with acquisition methods. Click a column heading to sort.</caption><thead><tr>
+        <th scope="col" data-sort="name"><button type="button">Item <span aria-hidden="true">↕</span></button></th>
+        <th scope="col" data-sort="level"><button type="button">Level <span aria-hidden="true">↕</span></button></th>
+        <th scope="col" class="number" data-sort="price"><button type="button">Price · emeralds <span aria-hidden="true">↕</span></button></th>
+        <th scope="col" class="number" data-sort="observations"><button type="button">Observations <span aria-hidden="true">↕</span></button></th>
+        <th scope="col">Acquisition method</th>
+      </tr></thead><tbody id="rows"></tbody></table>
+    </div>
+    <p id="empty" hidden>No items match these filters. Adjust the level range or clear a filter.</p>
+    <nav class="pagination" aria-label="Results pages"><button id="previous" type="button">← Previous</button><span id="page" aria-live="polite"></span><button id="next" type="button">Next →</button><label>Rows per page<select id="page-size"><option>50</option><option>100</option><option>250</option></select></label></nav>
+    <details class="notes"><summary>Price definitions, coverage & sources</summary><div>
+      <p>The default price is Wynnventory’s average of daily average listing prices over the displayed date window. The trimmed option averages its daily middle-80% prices. Neither is a transaction-weighted sale price or an exact-roll appraisal.</p>
+      <p>Observations are summed daily listing counts: the same unsold listing may appear on several days. The smaller daily figure is the mean count on days represented in the archive. Low/high are observed extremes over the window. Non-shiny items only.</p>
+      <p>All received market rows and official item records are retained. Exact display or internal names are joined, with item types checked. Duplicate item variants share a name-based price and are labelled. Unmatched market items have unknown levels and sources. Items without price data stay visible with “No price”. Filters and pagination always show counts.</p>
+      <p>Level means a combat requirement for equipment, crafting level for ingredients, and gathering level for materials/tools. An item’s level does not establish the level or quests needed to obtain it. Known quest and trade restrictions are shown in its row.</p>
+      <p>Acquisition comes from official item metadata, supplemented by linked wiki sources. “Excluded from ordinary drops” does not mean unobtainable. Unresolved special, legacy or seasonal sources remain explicit. This is a dated snapshot; it does not update itself while you browse.</p>
+      <p id="source-links"></p>
+    </div></details>
+  </main><footer>Wynncraft Market Explorer · Independent community tool. Not affiliated with Wynncraft.</footer>
+  <noscript>This table needs JavaScript enabled. No login is required.</noscript>
+</body></html>
