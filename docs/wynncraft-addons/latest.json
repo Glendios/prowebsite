@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "release": "2026.10.05.1",
+  "release": "2026.10.05.2",
   "minecraft": "1.21.11",
   "wynntils": "4.1.0",
   "download": "https://phantom.moe/wynncraft-addons/",
@@ -46,6 +46,12 @@
       "version": "1.0.0",
       "file": "update-watcher-1.0.0.jar",
       "sha256": "21d59633f604366ea231b2c0a0791ee3f595be4dfbcc872ad0de519f8ff7e597"
+    },
+    {
+      "id": "wynnventory",
+      "version": "2.1.1-phantom.1",
+      "file": "wynnventory-compat-2.1.1-phantom.1.jar",
+      "sha256": "a270bdd17c9b39c928941df3de49b69858cb39584f6adf11b132235a8aad89d9"
     }
   ]
 }
