@@ -1,0 +1,3 @@
+9f38686369292d89ad7959a7fd96f2c2eb99ea08fb795dcecccd6d8517e54393  wynncraft-addons-2026.10.07.2.mrpack
+6d389aaf2aaefa98d05b23d3acb371ea143f1fe68c8aae67f5d60f1ff270427e  wynncraft-addons-2026.10.07.2.rar
+f0a7bc7d1c94f8665282ccb96e95b4faa9fd726ce29bbb9a1cd38bd3aad1d5eb  wynncraft-addons-2026.10.07.2.zip

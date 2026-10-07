@@ -1,27 +1,27 @@
 {
   "schema": 1,
-  "release": "2026.10.05.3",
+  "release": "2026.10.07.2",
   "minecraft": "1.21.11",
-  "wynntils": "4.1.0",
+  "wynntils": "4.2.13",
   "download": "https://phantom.moe/wynncraft-addons/",
   "mods": [
     {
       "id": "reroll_confirm",
-      "version": "1.6.0",
-      "file": "reroll-confirm-1.6.0.jar",
-      "sha256": "107c84ce8d28aebace6f683cbaba2d1199c3bfaa58f71b4ac07a64648c7fa609"
+      "version": "1.9.0",
+      "file": "reroll-confirm-1.9.0.jar",
+      "sha256": "31162434eb694fbeea730363b4916cba63c090bee4738c42c4e9bfb2782675bf"
     },
     {
       "id": "wynn_event_labels",
-      "version": "1.1.0",
-      "file": "event-labels-1.1.0.jar",
-      "sha256": "bc2abba4748083b1773a210f50f8f58d7fa267a72f8f1814fd848a2b31c21ec8"
+      "version": "1.2.0",
+      "file": "event-labels-1.2.0.jar",
+      "sha256": "44fc2966b71b4a731a6625e0283154fa4bce1560bd8317b29b9ef9e520ca6a34"
     },
     {
       "id": "wynn_travel_links",
-      "version": "1.2.0",
-      "file": "travel-links-1.2.0.jar",
-      "sha256": "ed0c2273fe291032754ef05a6698799e363058059625aad3bbf3727eb0a37c92"
+      "version": "1.3.0",
+      "file": "travel-links-1.3.0.jar",
+      "sha256": "1b8fbe5c563795b5947a25d85e219357c0efe8142c0c577017c81248bd749dd0"
     },
     {
       "id": "window_memory",
@@ -31,27 +31,27 @@
     },
     {
       "id": "wynn_party_fixes",
-      "version": "1.1.2",
-      "file": "party-fixes-1.1.2.jar",
-      "sha256": "f99ae56710a4e159cc1ef5e593bb0f8c0b7945358fd807fdaf5c0922ed8f6a04"
+      "version": "1.3.1",
+      "file": "party-fixes-1.3.1.jar",
+      "sha256": "ba40680883b943c0ddbff5df82d82bc4e40bb149b6d8d23570c5dee707a905f7"
     },
     {
       "id": "wynn_quest_guide",
-      "version": "1.2.2",
-      "file": "quest-guide-1.2.2.jar",
-      "sha256": "9af10d76ab39a59f6cdc8bd4160e3e3e0eae82509fbf72a20e838d23c4756f98"
+      "version": "1.4.0",
+      "file": "quest-guide-1.4.0.jar",
+      "sha256": "a865db272e112c9b9919098becbc49a9a70ace9b4f027827f8bb6a6114bfc7e8"
     },
     {
       "id": "wynn_update_watcher",
-      "version": "1.0.0",
-      "file": "update-watcher-1.0.0.jar",
-      "sha256": "21d59633f604366ea231b2c0a0791ee3f595be4dfbcc872ad0de519f8ff7e597"
+      "version": "1.1.0",
+      "file": "update-watcher-1.1.0.jar",
+      "sha256": "be52799dc31d3ceb60ec9b95fde9ff9898efbdf9b0a2511ec3ef1412e021892e"
     },
     {
       "id": "wynnventory",
-      "version": "2.1.1-phantom.2",
-      "file": "wynnventory-compat-2.1.1-phantom.2.jar",
-      "sha256": "b2b1f1a34ebdb0479fbe13b566140d0f2db694c897b88f6cc18c5f1ac3b2a374"
+      "version": "2.2.5-phantom.1",
+      "file": "wynnventory-compat-2.2.5-phantom.1.jar",
+      "sha256": "a0e6c51c2d05aa850cc023910b54f6eb8d9c9de14d82ab46966124d436152f21"
     }
   ]
 }
