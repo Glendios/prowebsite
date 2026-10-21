@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "serve": "python -m http.server 8788 --directory docs",
-    "audit": "npm audit --omit=dev"
+    "audit": "npm audit --omit=dev",
+    "verify": "node scripts/verify.mjs"
   }
 }

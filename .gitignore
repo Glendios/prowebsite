@@ -1,3 +1,12 @@
-﻿node_modules/
+node_modules/
 src/
 .vscode/settings.json
+.tmp_*
+_tmp_*
+.scratch/
+.unattended_runs/
+*.log
+.env
+.env.*
+test-results/
+playwright-report/
