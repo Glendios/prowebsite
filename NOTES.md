@@ -10,10 +10,10 @@ Last verified: 2026-10-20 (Claude session 398f0327).
 | Host | Serves | Source | Status (2026-10-20) |
 | --- | --- | --- | --- |
 | phantom.moe | Static hub ("Phantom Tools") | this repo, `docs/`, GitHub Pages, `CNAME` | 200 |
-| www.phantom.moe | Nothing usable | DNS resolves to the GitHub Pages IPs | HTTPS fails (no cert) |
+| www.phantom.moe | Redirect to the apex | Cloudflare `CNAME www glendios.github.io`, DNS only (was `CNAME phantom.moe`; changed 2026-10-21 by Codex) | HTTP 301 to https://phantom.moe/; HTTPS waiting on GitHub's certificate |
 | tasks.phantom.moe | Cross-Device Task Dashboard; private `/notes` and `/send/*` pages; `/a` redirects to chat.phantom.moe/a | `cross-device-task-dashboard`, Vercel, deployed with the CLI (not git) | 200 |
 | lol.phantom.moe | League Combos Damage Theorizer | `league-dmg-calculator`, Vercel | 200 |
-| osrs.phantom.moe | OSRS Damage Comparator | `osrs-calculator`, Vercel (`osrs-calculator.vercel.app` works) | Does not resolve: Cloudflare record `A osrs 76.76.21.21` missing since 2026-07-07 |
+| osrs.phantom.moe | OSRS Damage Comparator | `osrs-calculator`, Vercel (`osrs-calculator.vercel.app` works) | Cloudflare `A osrs 76.76.21.21`, DNS only (added 2026-10-21 by Codex). HTTP 200; HTTPS waiting on Vercel's certificate (none issued as of 2026-10-21) |
 | wynn.phantom.moe | Wynncraft Item Browser at `/items/` | `Documents/ChatGPT/wymn`, Cloudflare Pages project `wynn-phantom` | 200. The Oct 11 blockers are resolved; the wymn Claude session deploys there |
 
 DNS is on Cloudflare. Access is either Noel's browser login or a token. The Wrangler OAuth login has `zone:read` but no DNS write scope, so agents cannot edit records with it.
@@ -38,9 +38,10 @@ Routes under the apex:
 ## Open items
 
 1. Noel: publish the two branches (`claude/site-fixes` here, `claude/vague-private-pages` in cross-device-task-dashboard), then sync the local checkout. Discard the formatting-only diffs, then move `main` to `origin/main`.
-2. Noel: Cloudflare DNS. Add `A osrs 76.76.21.21` (DNS only).
-   - For www, either point `www` at `glendios.github.io` (CNAME, DNS only) so GitHub Pages issues its certificate and redirects to the apex, or delete the `www` record.
-   - When osrs resolves, change its directory row from "DNS pending" to "Game tool".
+2. HTTPS certificates for osrs (Vercel) and www (GitHub Pages). DNS is correct as of 2026-10-21.
+   - Both providers normally issue on their own. If osrs still has no certificate after a day, run `vercel certs issue osrs.phantom.moe`. That needs Noel's approval; auto mode blocks cert changes.
+   - If www still has none, re-save the custom domain in the GitHub Pages settings.
+   - When osrs HTTPS works, change its directory row from "Cert pending" to "Game tool".
 3. Dictionary DeepL proxy on Render (`deeplapi-xx79.onrender.com`) lacks CORS headers, so the page falls back to a DeepL link. Fixing it means changing the proxy service, whose source is not in this repo.
 4. The browser smoke test is a dependency-free local HTTP check (`scripts/verify.mjs`), not Playwright. Add Playwright only after running the downloaded-code checks.
 
@@ -59,7 +60,8 @@ Routes under the apex:
   - Moved `docs/development-log.md` out of the public folder (below). It had been publicly served with local paths.
   - Made the `/a/` wording vague and added wynn and the Wynncraft routes to the directory.
   - Added CONTRIBUTING/AGENTS/CLAUDE, `scripts/verify.mjs`, CI, a pre-commit hook and `.prettierignore`.
-  - In cross-device-task-dashboard: made every visible string on `/notes`, `/send/`, `/send/private` and `/send/inbox` vague (branch `claude/vague-private-pages`, commit `a0aca47`, verify fully green; not pushed or deployed because production deploys need Noel's approval).
+  - Codex (PROSITE chat) made the osrs/www DNS changes on 2026-10-21.
+  - In cross-device-task-dashboard: made every visible string on `/notes`, `/send/`, `/send/private` and `/send/inbox` vague. Notes now also accept any file type (250 MB per file, 600 MB total), and phone photos converted during upload no longer fail as too large (branch `claude/vague-private-pages`, commit `a0aca47`, verify fully green; not pushed or deployed because production deploys need Noel's approval).
 
 ## Development log (moved from docs/development-log.md on 2026-10-20)
 
