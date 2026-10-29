@@ -90,3 +90,20 @@ Routes under the apex:
 - Privacy pass: Removed public full-name metadata from the home page and changed the About page heading to the site identity instead of a full personal name. GitHub remains the public contact path.
 - Verification: Local static server returned `200 OK` for all HTML pages. `npm run audit -- --omit=dev` reported no vulnerabilities. Text scan found only false positives in legal copy and the technical phrase "PyQt signal handoff."
 - Follow-up: Root repo safeguards are missing (`AGENTS.md`, `CLAUDE.md`, `CONTRIBUTING.md`, CI, and e2e smoke-test scaffolding). Add them in a separate approved pass.
+
+## 2026-10-29 - Portfolio redesign and deslop
+- Published the rebuild (34ed719), then a deslop pass (8d15c1b). Portfolio pages use `docs/portfolio.css`; tool pages keep `cndictstyle.css`.
+- Issue: the earlier blind reviews only saw page text, so their scores said nothing about the design. Noel saw the old card template and called it garbage. Fix: the reviews now attach full-page screenshots to Codex (`job-scanner/scripts/blind_review.py --image`).
+- Screenshot reviews, live site → redesign → after deslop:
+
+  | Score | Live site | Redesign | After deslop |
+  |---|---|---|---|
+  | Interview lift | 5 | 8 | 7.5 |
+  | Credibility | 6 | 8 | 8.5 |
+  | Desktop visuals | 7 | 8 | 8 |
+  | Mobile visuals | not scored | 5 | 6 |
+
+  The after-deslop review covered three more pages than the redesign review, so its scores aren't strictly comparable.
+- Deslop: Codex flagged phrases across 5 pages. The top patterns were resume bullets used as web copy, lists of three or four items, "X instead of Y" contrasts, template headings and eyebrows, and slogan lines.
+- KNAPP content is kept at the approved generic level. The terminal replay uses made-up data, and the root-cause wording is "host-integration defect in multi-part order completion" with no internal names.
+- Open: contact/name in the header (Noel undecided); mobile is the weakest view; the task-dashboard screenshot is too small to read.
