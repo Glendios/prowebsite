@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About | Phantom Tools</title>
-  <meta name="description" content="About the builder behind Phantom Tools: a UC Davis CS graduate building Python automation, browser workflow tools, Windows utilities, and full-stack task software.">
+  <meta name="description" content="Software engineer working on a 24/7 automated fulfillment platform, with a background in workflow automation and a UC Davis computer science degree.">
   <meta content="About Phantom Tools" property="og:title">
-  <meta content="About the builder behind phantom.moe." property="og:description">
+  <meta content="Backend and production software, data pipelines and automation." property="og:description">
   <meta content="https://phantom.moe/work.html" property="og:url">
   <meta content="https://phantom.moe/assets/task-dashboard-preview.png" property="og:image">
   <link rel="canonical" href="https://phantom.moe/work.html">
@@ -18,8 +18,8 @@
 <nav class="navbar">
   <a class="navbar-brand" href="./index.html">phantom.moe</a>
   <ul class="navbar-links">
+    <li><a href="./index.html#experience">Experience</a></li>
     <li><a href="./index.html#projects">Projects</a></li>
-    <li><a href="./index.html#tools">Tools</a></li>
     <li><a href="./work.html">About</a></li>
     <li><a href="https://github.com/Glendios" target="_blank" rel="noopener">GitHub</a></li>
   </ul>
@@ -28,58 +28,66 @@
 <main class="project-page">
   <header>
     <p class="eyebrow">About</p>
-    <h1>Builder Behind Phantom Tools</h1>
-    <p class="project-lede">UC Davis CS graduate building Python automation, browser workflow tools, Windows utilities, and full-stack task software. Many of these projects focus on repetitive workflows where automation is useful but human review still matters.</p>
+    <h1>Software engineer in the Bay Area</h1>
+    <p class="project-lede">I build and run software for systems that can't go down, and I build tools that remove repetitive work, mostly in Python and SQL. I'm a UC Davis computer science graduate and speak English, Korean and Japanese fluently.</p>
     <div class="project-meta">
       <span>Python</span>
-      <span>Playwright</span>
-      <span>React</span>
+      <span>SQL and PL/SQL</span>
+      <span>C++ (production debugging)</span>
       <span>TypeScript</span>
-      <span>OpenCV</span>
-      <span>Windows tooling</span>
+      <span>Linux</span>
+      <span>Azure DevOps</span>
+      <span>MCP and LLM APIs</span>
     </div>
   </header>
 
-  <section class="project-feature">
+  <section class="project-feature" id="knapp">
     <div class="project-copy">
-      <p class="project-kicker">Automation focus</p>
-      <h3>Software automation for dental-lab intake</h3>
-      <p>Built and maintain a Python workflow that turns scanned slips and browser-retrieved digital case records into structured review data for an Access-based lab management process.</p>
+      <p class="project-kicker">KNAPP, Walmart fulfillment center &nbsp;|&nbsp; 2026 to present</p>
+      <h3>Software Engineer</h3>
+      <p>KNAPP builds the shuttle storage, goods-to-person picking and conveyor systems inside a large Walmart e-commerce fulfillment center that runs around the clock and handles millions of orders a month. I joined for its go-live and stabilization.</p>
       <ul class="impact-list">
-        <li>Uses OCR/parsing, validation, duplicate warnings, logging, and human review checkpoints.</li>
-        <li>Automates digital case retrieval from external dental portals with Playwright.</li>
-        <li>Reduced one recurring case-intake workflow from about 3 hours to about 5 minutes.</li>
+        <li>Work with KNAPP's software engineers on the warehouse-control platform (C++, Oracle PL/SQL, Linux): test new features, triage bugs in Azure DevOps, and implement and verify fixes against live production behavior.</li>
+        <li>Run production releases of platform changes end to end in Azure DevOps: branch merges, builds, database migrations and post-deploy checks.</li>
+        <li>Build and maintain the Python and Bash tools the site team uses daily: real-time monitoring, log processing, equipment status collection, inventory-quality reports and a SQL-backed order-investigation tool.</li>
+        <li>Traced a host-integration defect that left about 12 multi-part orders a day stuck holding inventory, and shipped the fix with the core developers.</li>
+        <li>Act as KNAPP's technical contact for Walmart leadership during business-critical incidents, 2–3 a day, bringing in the software, controls, mechanical and database teams until the site is back.</li>
       </ul>
     </div>
-    <div class="workflow-visual" aria-label="Workflow summary">
-      <div>Python automation</div>
-      <div>Browser workflows</div>
-      <div>Reviewable data handoff</div>
-      <div>React task tooling</div>
+    <div class="workflow-visual" aria-label="Typical incident">
+      <div>Walmart reports a stuck flow</div>
+      <div>Check logs, database and equipment</div>
+      <div>Find the failing layer</div>
+      <div>Fix or escalate to the right team</div>
+      <div>Verify recovery and close</div>
     </div>
   </section>
 
   <section class="two-column">
     <div class="project-panel">
-      <h2>Work style</h2>
-      <ul class="features-list">
-        <li>Builds small tools around real workflows.</li>
-        <li>Keeps human review where automation can be uncertain.</li>
-        <li>Uses tests and smoke checks where breakage would be costly.</li>
-        <li>Prefers practical, shippable software over polished mockups.</li>
-      </ul>
+      <h2>Before KNAPP</h2>
+      <p><strong>Foothill Dental Ceramics, Technical Analyst (2022 to 2026).</strong> Built and maintained the lab's case-intake automation and supported staff with their workstations and software. See <a href="./dental-lab-automation.html">Dental Lab Case Intake</a>.</p>
+      <h2>Education</h2>
+      <p>B.S. Computer Science, University of California, Davis.</p>
     </div>
 
     <div class="project-panel">
+      <h2>How I work</h2>
+      <p>I start from the real workflow and the failure that hurts most, then build the smallest tool that removes it. I keep a person in the loop where software can be wrong in costly ways, and I test against messy real inputs, not clean samples.</p>
       <h2>Contact</h2>
-      <p>GitHub is the public contact path from this site.</p>
-      <div class="hero-actions">
-        <a href="https://github.com/Glendios" target="_blank" rel="noopener" class="btn">GitHub</a>
-        <a href="./index.html#projects" class="btn btn-ghost">Projects</a>
-      </div>
+      <p><a href="https://github.com/Glendios" target="_blank" rel="noopener">GitHub</a></p>
     </div>
   </section>
 </main>
+
+<footer class="site-footer">
+  <p>© Phantom Tools</p>
+  <div class="footer-links">
+    <a href="./privacy.html">Privacy</a>
+    <a href="./terms.html">Terms</a>
+    <a href="https://github.com/Glendios" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</footer>
 
 </body>
 </html>

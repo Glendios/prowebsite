@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-Source Data Ingestion Pipeline | Phantom Tools</title>
+  <meta name="description" content="A Python pipeline that pulls job postings from 32 source types, reconciles 43K+ records with stable-ID deduplication, and polls 2,000+ boards hourly.">
+  <meta content="Multi-Source Data Ingestion Pipeline" property="og:title">
+  <meta content="Reconciling 43K+ records from 32 source types with stable IDs and 700+ tests." property="og:description">
+  <meta content="https://phantom.moe/data-ingestion-pipeline.html" property="og:url">
+  <meta content="https://phantom.moe/assets/task-dashboard-preview.png" property="og:image">
+  <link rel="canonical" href="https://phantom.moe/data-ingestion-pipeline.html">
+  <link rel="stylesheet" href="./cndictstyle.css?v=20260608">
+  <link rel="icon" href="./assets/elysigicon.png" type="image/png">
+</head>
+<body>
+
+<nav class="navbar">
+  <a class="navbar-brand" href="./index.html">phantom.moe</a>
+  <ul class="navbar-links">
+    <li><a href="./index.html#experience">Experience</a></li>
+    <li><a href="./index.html#projects">Projects</a></li>
+    <li><a href="./work.html">About</a></li>
+    <li><a href="https://github.com/Glendios" target="_blank" rel="noopener">GitHub</a></li>
+  </ul>
+</nav>
+
+<main class="project-page">
+  <header>
+    <p class="eyebrow">Data pipeline</p>
+    <h1>Multi-Source Data Ingestion Pipeline</h1>
+    <p class="project-lede">Job postings live in dozens of places that each describe the same job differently: company career sites, applicant-tracking systems, aggregators and government boards. This pipeline pulls them into one store, recognizes the same posting across sources, and ranks what's new.</p>
+    <div class="project-meta">
+      <span>Python</span>
+      <span>REST APIs</span>
+      <span>Playwright</span>
+      <span>Concurrency</span>
+      <span>pytest</span>
+    </div>
+  </header>
+
+  <section class="project-feature">
+    <div class="project-copy">
+      <p class="project-kicker">Scale</p>
+      <h3>43K+ records from 32 source types</h3>
+      <p>Each source has its own adapter that turns its format into one common record. Where a source has a public API (Greenhouse, Lever, Ashby, Workday and others) the adapter calls it directly; browser automation is used only for sites without one.</p>
+      <ul class="impact-list">
+        <li>An hourly watcher checks 2,000+ company job boards in about 70 seconds. It reads each applicant-tracking system's public job-board API, the same feed those companies publish for job sites, through a small bounded thread pool, and keeps only postings published since the last pass.</li>
+        <li>700+ automated tests cover the adapters, deduplication, ranking and the error paths.</li>
+        <li>New matches above a fit threshold are sent as one daily digest, each posting at most once.</li>
+      </ul>
+    </div>
+    <div class="workflow-visual" aria-label="Pipeline">
+      <div>32 source adapters</div>
+      <div>Normalize to one schema</div>
+      <div>Stable IDs and dedupe</div>
+      <div>Filter and rank</div>
+      <div>Daily digest</div>
+    </div>
+  </section>
+
+  <section class="two-column">
+    <div class="project-panel">
+      <h2>Deduplication</h2>
+      <p>Every record gets a stable ID built from the system that actually hosts the posting and that system's own posting ID. The same job found through an aggregator, a search site and the company's own board resolves to one record, and re-running any adapter updates records instead of creating new ones.</p>
+      <h2>Ranking</h2>
+      <p>Hard filters drop postings that fail on location, level or posted pay. The rest are scored on fit, freshness, pay and career value, and the scores were checked against independent ratings of the same postings before the weights were set.</p>
+    </div>
+
+    <div class="project-panel">
+      <h2>Failure handling</h2>
+      <p>Sources break constantly: rate limits, layout changes, expired listings. Each adapter fails on its own without stopping the run, a shared lock keeps two runs from writing at once, and closed postings are recorded so they stop coming back.</p>
+      <h2>Being a good client</h2>
+      <p>API sources are preferred over page scraping. Browser automation is paced and runs one page at a time, a source that fails is skipped until the next run instead of being retried in a loop, and any change to a scraper is tested against a single live page before a full run.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>© Phantom Tools</p>
+  <div class="footer-links">
+    <a href="./privacy.html">Privacy</a>
+    <a href="./terms.html">Terms</a>
+    <a href="https://github.com/Glendios" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</footer>
+
+</body>
+</html>
