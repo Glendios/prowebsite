@@ -4,84 +4,54 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agent Memory MCP Server | Phantom Tools</title>
-  <meta name="description" content="A Python MCP server that gives Claude Code and Codex shared memory, full-text chat-history search over 128K+ messages, and session hand-off between the two agents.">
+  <meta name="description" content="A Python MCP server that gives Claude Code and Codex shared memory and full-text search over 128K+ messages of chat history.">
   <meta content="Agent Memory MCP Server" property="og:title">
   <meta content="Shared memory and chat-history search for Claude Code and Codex." property="og:description">
   <meta content="https://phantom.moe/agent-memory-mcp.html" property="og:url">
   <meta content="https://phantom.moe/assets/task-dashboard-preview.png" property="og:image">
   <link rel="canonical" href="https://phantom.moe/agent-memory-mcp.html">
-  <link rel="stylesheet" href="./cndictstyle.css?v=20260608">
+  <link rel="stylesheet" href="./portfolio.css?v=20261029b">
   <link rel="icon" href="./assets/elysigicon.png" type="image/png">
 </head>
 <body>
 
-<nav class="navbar">
-  <a class="navbar-brand" href="./index.html">phantom.moe</a>
-  <ul class="navbar-links">
-    <li><a href="./index.html#experience">Experience</a></li>
-    <li><a href="./index.html#projects">Projects</a></li>
-    <li><a href="./work.html">About</a></li>
-    <li><a href="https://github.com/Glendios" target="_blank" rel="noopener">GitHub</a></li>
-  </ul>
-</nav>
+<header class="bar">
+  <a class="home" href="./index.html">phantom.moe</a>
+  <nav>
+    <a href="./index.html#work">Work</a>
+    <a href="./index.html#projects">Projects</a>
+    <a href="./work.html">About</a>
+    <a href="https://github.com/Glendios" target="_blank" rel="noopener">GitHub</a>
+  </nav>
+</header>
 
-<main class="project-page">
-  <header>
-    <p class="eyebrow">AI developer tooling</p>
+<main>
+  <article class="page">
     <h1>Agent Memory MCP Server</h1>
-    <p class="project-lede">I use Claude Code and Codex side by side every day. Each one forgets everything between sessions and can't see what the other did. This server gives both agents one shared memory and a searchable record of every conversation either of them has had.</p>
-    <div class="project-meta">
-      <span>Python (standard library only)</span>
-      <span>Model Context Protocol</span>
-      <span>SQLite FTS5</span>
-      <span>JSON-RPC over stdio</span>
-    </div>
-  </header>
+    <p class="stack">Python standard library, Model Context Protocol, SQLite FTS5</p>
 
-  <section class="project-feature">
-    <div class="project-copy">
-      <p class="project-kicker">Result</p>
-      <h3>128K+ messages, about 2 ms per search</h3>
-      <p>Every user and assistant message from both tools goes into one full-text index. Either agent can search it, list a project's past sessions, read a session page by page, or pick up the other agent's latest session where it stopped.</p>
-      <ul class="impact-list">
-        <li>12 tools: memory search, list, read and write; chat search; project sessions; session read; latest session; index status; and import of a session into the other agent.</li>
-        <li>A Codex conversation can be turned into a Claude Code session, and the reverse, with its messages and tool output intact.</li>
-        <li>No date window: the index covers every session on the machine, not just recent ones.</li>
-      </ul>
-    </div>
-    <div class="workflow-visual" aria-label="How it works">
-      <div>Session logs from both agents</div>
-      <div>Background indexer</div>
-      <div>SQLite FTS5 index</div>
-      <div>MCP tools over stdio</div>
-      <div>Claude Code and Codex</div>
-    </div>
-  </section>
+    <p class="lede">I use Claude Code and Codex side by side every day. Their sessions are separate, so one can't look up what the other decided yesterday, and neither keeps much between sessions. This server indexes both tools' conversation logs and serves them to both through MCP. The index holds 128K+ messages, and a search takes about 2 ms.</p>
 
-  <section class="two-column">
-    <div class="project-panel">
-      <h2>Design choices</h2>
-      <p><strong>Full-text search over embeddings.</strong> Most lookups are for exact things: an error message, a file name, a decision. FTS5 finds those in milliseconds with no model calls and no extra service to run.</p>
-      <p><strong>Standard library only.</strong> The server is one Python process started by each agent. Nothing to install means it starts the same way on any machine with Python.</p>
-      <p><strong>Incremental indexing.</strong> A background thread reads only what changed in each session file since the last pass, so the index stays current without re-reading gigabytes of logs.</p>
-    </div>
+    <h2>What the tools do</h2>
+    <p>There are 12 MCP tools. The ones I use most search past chats, list a project's sessions, read a session page by page, and open the other agent's latest session to pick up where it stopped. A shared memory folder holds notes both agents can read and write. A session can also be imported from one tool into the other with its messages and tool output.</p>
 
-    <div class="project-panel">
-      <h2>Safeguards</h2>
-      <p>It reads only the two agents' session folders and the memory files, never credentials. Very large lines and messages are capped so one oversized log can't stall indexing. Writes go only to the shared memory folder.</p>
-      <h2>Ownership</h2>
-      <p>I designed the schema, the incremental indexing approach, the MCP tool interfaces and the test plan. I used Claude Code and Codex as implementation assistants, then inspected, tested and revised what they produced. The hardest part was indexing live logs safely: session files grow while agents write to them, so the indexer tracks how far it has read in each file and only commits complete lines.</p>
-    </div>
-  </section>
+    <h2>Implementation</h2>
+    <p>I used SQLite FTS5 because what I search for is usually an exact string: an error message, a file name, a decision. FTS5 answers in milliseconds on the local machine with no model call.</p>
+    <p>The server is one Python process with no third-party packages, so each agent can start it without an install step.</p>
+    <p>Session files grow while the agents are writing them. The indexer stores how far it has read in each file and commits only complete lines, then picks up from that offset on the next pass. Very long lines are capped so one oversized log can't hold up indexing.</p>
+
+    <h2>My part</h2>
+    <p>I designed the schema, the indexer and the MCP tool interfaces, and wrote the test plan. Claude Code and Codex wrote much of the code; I reviewed and tested every change.</p>
+  </article>
 </main>
 
-<footer class="site-footer">
-  <p>© Phantom Tools</p>
-  <div class="footer-links">
+<footer>
+  <span>English, Korean, Japanese</span>
+  <nav>
     <a href="./privacy.html">Privacy</a>
     <a href="./terms.html">Terms</a>
     <a href="https://github.com/Glendios" target="_blank" rel="noopener">GitHub</a>
-  </div>
+  </nav>
 </footer>
 
 </body>

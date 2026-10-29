@@ -4,89 +4,55 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About | Phantom Tools</title>
-  <meta name="description" content="Software engineer working on a 24/7 automated fulfillment platform, with a background in workflow automation and a UC Davis computer science degree.">
+  <meta name="description" content="Software engineer at KNAPP on the warehouse-control platform for a Walmart fulfillment center. Before that, dental-lab automation. UC Davis computer science.">
   <meta content="About Phantom Tools" property="og:title">
-  <meta content="Backend and production software, data pipelines and automation." property="og:description">
+  <meta content="Production software, diagnostic tools, data pipelines and automation." property="og:description">
   <meta content="https://phantom.moe/work.html" property="og:url">
   <meta content="https://phantom.moe/assets/task-dashboard-preview.png" property="og:image">
   <link rel="canonical" href="https://phantom.moe/work.html">
-  <link rel="stylesheet" href="./cndictstyle.css?v=20260608">
+  <link rel="stylesheet" href="./portfolio.css?v=20261029b">
   <link rel="icon" href="./assets/elysigicon.png" type="image/png">
 </head>
 <body>
 
-<nav class="navbar">
-  <a class="navbar-brand" href="./index.html">phantom.moe</a>
-  <ul class="navbar-links">
-    <li><a href="./index.html#experience">Experience</a></li>
-    <li><a href="./index.html#projects">Projects</a></li>
-    <li><a href="./work.html">About</a></li>
-    <li><a href="https://github.com/Glendios" target="_blank" rel="noopener">GitHub</a></li>
-  </ul>
-</nav>
+<header class="bar">
+  <a class="home" href="./index.html">phantom.moe</a>
+  <nav>
+    <a href="./index.html#work">Work</a>
+    <a href="./index.html#projects">Projects</a>
+    <a href="./work.html">About</a>
+    <a href="https://github.com/Glendios" target="_blank" rel="noopener">GitHub</a>
+  </nav>
+</header>
 
-<main class="project-page">
-  <header>
-    <p class="eyebrow">About</p>
-    <h1>Software engineer in the Bay Area</h1>
-    <p class="project-lede">I build and run software for systems that can't go down, and I build tools that remove repetitive work, mostly in Python and SQL. I'm a UC Davis computer science graduate and speak English, Korean and Japanese fluently.</p>
-    <div class="project-meta">
-      <span>Python</span>
-      <span>SQL and PL/SQL</span>
-      <span>C++ (production debugging)</span>
-      <span>TypeScript</span>
-      <span>Linux</span>
-      <span>Azure DevOps</span>
-      <span>MCP and LLM APIs</span>
-    </div>
-  </header>
+<main>
+  <article class="page">
+    <h1>About</h1>
+    <p class="lede">I'm a software engineer at KNAPP, working on the warehouse-control platform for a Walmart e-commerce fulfillment center. Most of my code is Python and SQL. I studied computer science at UC Davis, and I speak English, Korean and Japanese.</p>
 
-  <section class="project-feature" id="knapp">
-    <div class="project-copy">
-      <p class="project-kicker">KNAPP, Walmart fulfillment center &nbsp;|&nbsp; 2026 to present</p>
-      <h3>Software Engineer</h3>
-      <p>KNAPP builds the shuttle storage, goods-to-person picking and conveyor systems inside a large Walmart e-commerce fulfillment center that runs around the clock and handles millions of orders a month. I joined for its go-live and stabilization.</p>
-      <ul class="impact-list">
-        <li>Work with KNAPP's software engineers on the warehouse-control platform (C++, Oracle PL/SQL, Linux): test new features, triage bugs in Azure DevOps, and implement and verify fixes against live production behavior.</li>
-        <li>Run production releases of platform changes end to end in Azure DevOps: branch merges, builds, database migrations and post-deploy checks.</li>
-        <li>Build and maintain the Python and Bash tools the site team uses daily: real-time monitoring, log processing, equipment status collection, inventory-quality reports and a SQL-backed order-investigation tool.</li>
-        <li>Traced a host-integration defect that left about 12 multi-part orders a day stuck holding inventory, and shipped the fix with the core developers.</li>
-        <li>Act as KNAPP's technical contact for Walmart leadership during business-critical incidents, 2–3 a day, bringing in the software, controls, mechanical and database teams until the site is back.</li>
-      </ul>
-    </div>
-    <div class="workflow-visual" aria-label="Typical incident">
-      <div>Walmart reports a stuck flow</div>
-      <div>Check logs, database and equipment</div>
-      <div>Find the failing layer</div>
-      <div>Fix or escalate to the right team</div>
-      <div>Verify recovery and close</div>
-    </div>
-  </section>
+    <h2 id="knapp">KNAPP</h2>
+    <p class="when">2026 – now, Stockton, CA</p>
+    <p>KNAPP supplies the shuttle storage, goods-to-person picking and conveyor systems at a Walmart fulfillment center that runs around the clock and handles millions of orders a month. I joined for the site's go-live and stayed through stabilization.</p>
+    <p>I work with KNAPP's software engineers on the platform, which is C++, Oracle PL/SQL and Linux. I test new features, triage bugs in Azure DevOps, and check fixes against the live system. I also run the production releases: branch merges, builds, database migrations and the checks after deploy.</p>
+    <p>The Python and Bash tools the site team uses every day are mine to build and maintain. They cover live monitoring, log processing, equipment status, inventory reports and order investigation. The order tool is how I found a host-integration defect that left about 12 multi-part orders a day stuck holding inventory. I worked with the core developers on the fix.</p>
+    <p>When an incident is serious enough to escalate, which happens 2–3 times a day, I'm the technical contact for Walmart's site leadership. I bring in whichever team owns the problem: software, controls, mechanical or database.</p>
 
-  <section class="two-column">
-    <div class="project-panel">
-      <h2>Before KNAPP</h2>
-      <p><strong>Foothill Dental Ceramics, Technical Analyst (2022 to 2026).</strong> Built and maintained the lab's case-intake automation and supported staff with their workstations and software. See <a href="./dental-lab-automation.html">Dental Lab Case Intake</a>.</p>
-      <h2>Education</h2>
-      <p>B.S. Computer Science, University of California, Davis.</p>
-    </div>
+    <h2>Foothill Dental Ceramics</h2>
+    <p class="when">2022 – 2026, Cupertino, CA</p>
+    <p>I was the lab's technical analyst. I built and maintained its <a href="./dental-lab-automation.html">case-intake automation</a> and looked after the staff's workstations and software. The intake requires a person to approve every case before it reaches Access, because an OCR mistake in a shade or due date means remaking a crown.</p>
 
-    <div class="project-panel">
-      <h2>How I work</h2>
-      <p>I start from the real workflow and the failure that hurts most, then build the smallest tool that removes it. I keep a person in the loop where software can be wrong in costly ways, and I test against messy real inputs, not clean samples.</p>
-      <h2>Contact</h2>
-      <p><a href="https://github.com/Glendios" target="_blank" rel="noopener">GitHub</a></p>
-    </div>
-  </section>
+    <h2>Tools</h2>
+    <p>Python, SQL and PL/SQL, Bash, C++ for production debugging, TypeScript and React, Linux, Azure DevOps, Playwright, MCP and LLM APIs.</p>
+  </article>
 </main>
 
-<footer class="site-footer">
-  <p>© Phantom Tools</p>
-  <div class="footer-links">
+<footer>
+  <span>English, Korean, Japanese</span>
+  <nav>
     <a href="./privacy.html">Privacy</a>
     <a href="./terms.html">Terms</a>
     <a href="https://github.com/Glendios" target="_blank" rel="noopener">GitHub</a>
-  </div>
+  </nav>
 </footer>
 
 </body>

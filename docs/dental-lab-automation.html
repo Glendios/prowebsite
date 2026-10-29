@@ -4,86 +4,57 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dental Lab Case Intake | Phantom Tools</title>
-  <meta name="description" content="Python case-intake automation for a dental lab: watched-folder scans, OCR and parsing, portal retrieval, validation, a review queue and Microsoft Access handoff.">
+  <meta name="description" content="Python intake for a dental lab: scanned work orders and portal cases become reviewed records in a Microsoft Access lab system.">
   <meta content="Dental Lab Case Intake" property="og:title">
-  <meta content="Python case-intake automation: OCR, portal retrieval, review queue and Access handoff." property="og:description">
+  <meta content="About 3 hours of data entry down to about 5 minutes, with staff review before anything is saved." property="og:description">
   <meta content="https://phantom.moe/dental-lab-automation.html" property="og:url">
   <meta content="https://phantom.moe/assets/task-dashboard-preview.png" property="og:image">
   <link rel="canonical" href="https://phantom.moe/dental-lab-automation.html">
-  <link rel="stylesheet" href="./cndictstyle.css?v=20260608">
+  <link rel="stylesheet" href="./portfolio.css?v=20261029b">
   <link rel="icon" href="./assets/elysigicon.png" type="image/png">
 </head>
 <body>
 
-<nav class="navbar">
-  <a class="navbar-brand" href="./index.html">phantom.moe</a>
-  <ul class="navbar-links">
-    <li><a href="./index.html#experience">Experience</a></li>
-    <li><a href="./index.html#projects">Projects</a></li>
-    <li><a href="./work.html">About</a></li>
-    <li><a href="https://github.com/Glendios" target="_blank" rel="noopener">GitHub</a></li>
-  </ul>
-</nav>
+<header class="bar">
+  <a class="home" href="./index.html">phantom.moe</a>
+  <nav>
+    <a href="./index.html#work">Work</a>
+    <a href="./index.html#projects">Projects</a>
+    <a href="./work.html">About</a>
+    <a href="https://github.com/Glendios" target="_blank" rel="noopener">GitHub</a>
+  </nav>
+</header>
 
-<main class="project-page">
-  <header>
-    <p class="eyebrow">Workflow automation</p>
+<main>
+  <article class="page">
     <h1>Dental Lab Case Intake</h1>
-    <p class="project-lede">A dental lab handling hundreds of active cases a month entered every case by hand from paper work orders and from external dental portals into a Microsoft Access lab manager. I built the Python system that does that entry now, with a person still checking anything the software can't read reliably.</p>
-    <div class="project-meta">
-      <span>Python</span>
-      <span>OCR (local and Azure Document Intelligence)</span>
-      <span>Playwright</span>
-      <span>SQLite</span>
-      <span>PySide6</span>
-      <span>Microsoft Access</span>
-    </div>
-  </header>
+    <p class="stack">Python, OCR, Azure Document Intelligence, Playwright, SQLite, PySide6, Microsoft Access</p>
 
-  <section class="project-feature">
-    <div class="project-copy">
-      <p class="project-kicker">Result</p>
-      <h3>About 3 hours of entry down to about 5 minutes</h3>
-      <p>Paper cases arrive as scans; digital cases arrive as email notices from portals such as 3Shape. Both now become structured records that staff confirm in a review screen before the case is created.</p>
-      <ul class="impact-list">
-        <li>Fields extracted: patient, doctor, case ID, shade, date in, due date, material and notes, with the original scan stored alongside.</li>
-        <li>Digital-case intake runs end to end: Playwright signs in to each portal, pulls the case details and stages the case.</li>
-        <li>Used to digitize thousands of historical case records across about 10 years for long-term lookup.</li>
-      </ul>
-    </div>
-    <div class="workflow-visual" aria-label="Intake flow">
-      <div>Scan lands or portal notice arrives</div>
-      <div>OCR and parse fields</div>
-      <div>Validate and flag duplicates</div>
-      <div>SQLite review queue</div>
-      <div>Staff confirm, then Access</div>
-    </div>
-  </section>
+    <p class="lede">Foothill Dental Ceramics handles hundreds of active cases a month. Staff used to type every one into a Microsoft Access lab manager by hand, from paper work orders and from external dental portals. I wrote the Python program that does that entry now. A recurring entry job that took about 3 hours takes about 5 minutes.</p>
 
-  <section class="two-column">
-    <div class="project-panel">
-      <h2>How it works</h2>
-      <p><strong>Watched folders.</strong> The scanner writes files slowly, so intake waits until a file stops changing before reading it, instead of parsing half-written scans.</p>
-      <p><strong>OCR with a choice of engine.</strong> A local engine handles clean printed fields; Azure Document Intelligence is available for harder pages. Either way the output goes through the same parser and validation.</p>
-      <p><strong>Review queue.</strong> Parsed cases wait in SQLite. A PySide6 desktop screen shows the scan next to the extracted fields so staff can correct and approve in seconds.</p>
-    </div>
+    <h2>Paper cases</h2>
+    <p>Work orders get scanned into a folder the program watches. The scanner writes files slowly, so it waits until a file's size stops changing before running OCR on it.</p>
+    <p>OCR runs locally for clean printed pages. Harder pages can go to Azure Document Intelligence. Both feed the same parser, which pulls out the patient, doctor, case ID, shade, intake date, due date, material and notes, and keeps the original scan with the record.</p>
 
-    <div class="project-panel">
-      <h2>Why a person stays in the loop</h2>
-      <p>OCR reads printed fields well and handwriting badly, and a wrong shade or due date becomes a remade crown. Validation rules and duplicate warnings catch most problems, and nothing is written to the lab system until someone has confirmed it.</p>
-      <h2>Operations</h2>
-      <p>Errors are logged per file, failed files stay in place for a retry, and command-line tools re-run any step on demand. The app is packaged so it runs on the lab's office PCs without a Python install.</p>
-    </div>
-  </section>
+    <h2>Portal cases</h2>
+    <p>Digital cases show up as email notifications from portals like 3Shape. A Playwright script signs in to the portal, downloads the case details and puts the case in the same review queue as the scans.</p>
+
+    <h2>Review</h2>
+    <p>OCR is good on printed fields and bad on handwriting. A wrong shade or due date means a remade crown, so nothing reaches Access until someone at the lab approves it. The review screen (PySide6) shows the scan next to the extracted fields, with validation errors and duplicate warnings marked.</p>
+
+    <h2>Running it at the lab</h2>
+    <p>Errors are logged against the file that caused them, and a failed file stays in the folder to be retried. Command-line tools can rerun any stage. The app is packaged to run on the office PCs without Python installed.</p>
+    <p>The same program digitized thousands of old case records covering about 10 years, so past cases can be looked up when a doctor asks what was ordered.</p>
+  </article>
 </main>
 
-<footer class="site-footer">
-  <p>© Phantom Tools</p>
-  <div class="footer-links">
+<footer>
+  <span>English, Korean, Japanese</span>
+  <nav>
     <a href="./privacy.html">Privacy</a>
     <a href="./terms.html">Terms</a>
     <a href="https://github.com/Glendios" target="_blank" rel="noopener">GitHub</a>
-  </div>
+  </nav>
 </footer>
 
 </body>

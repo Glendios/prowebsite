@@ -107,7 +107,7 @@ main { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
 .ledger tr:last-child td { border-bottom: 1px solid var(--rule); }
 .ledger .from { font-family: var(--mono); color: var(--ink); text-decoration: line-through; text-decoration-color: var(--signal); white-space: nowrap; }
 .ledger .to { font: 600 22px var(--mono); white-space: nowrap; }
-.ledger .where { font-family: var(--mono); font-size: 13px; color: var(--ink-2); text-align: right; white-space: nowrap; }
+.ledger .where { font-family: var(--mono); font-size: 14px; color: var(--ink-2); text-align: right; white-space: nowrap; }
 
 /* Work timeline */
 .job { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 28px; padding: 26px 0; border-top: 1px solid var(--rule); }
@@ -224,4 +224,27 @@ footer nav { display: flex; gap: 18px; }
   .ledger tr:last-child td { border-bottom: 0; }
   .search input { font-size: 16px; padding: 12px; }
   footer { flex-direction: column; gap: 10px; }
+}
+
+/* Inner pages */
+.page { max-width: 780px; padding: 56px 0 72px; }
+.page h1 { font: 400 clamp(34px, 4vw, 46px)/1.1 var(--serif); margin-bottom: 10px; }
+.page .stack { font: 14px var(--mono); color: var(--ink-2); margin-bottom: 26px; }
+.page .lede { font-size: 19px; }
+.page h2 { font: 400 26px/1.25 var(--serif); margin: 44px 0 12px; padding-top: 22px; border-top: 1px solid var(--rule); }
+.page p + p { margin-top: 12px; }
+.page ul { padding-left: 18px; margin: 12px 0 0; }
+.page li { margin: 6px 0; }
+.page li::marker { color: var(--signal); }
+.page .figure { margin: 28px 0 0; }
+.page .when { font: 14px var(--mono); color: var(--ink-2); margin-bottom: 6px; }
+
+@media (max-width: 860px) {
+  .bar { font-size: 15px; }
+  .bar nav { gap: 14px; }
+  .bar nav a { padding: 10px 2px; }
+  .term pre { white-space: pre; overflow-x: auto; font-size: 13px; }
+  .sec > h2 .n { font-size: 16px; }
+  .proj .stack, .job .when { font-size: 15px; }
+  .fields, .flow { font-size: 15px; }
 }
