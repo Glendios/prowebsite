@@ -121,24 +121,6 @@
 
     <article class="proj">
       <div>
-        <h3>Agent Memory MCP Server</h3>
-        <p class="stack">Python standard library, MCP, SQLite FTS5</p>
-        <p>Two coding agents on one machine can't see each other's history, and neither remembers much between sessions. This server indexes the conversation logs of both (Claude Code and Codex) and lets either search them: 128K+ messages, about 2 ms a search.</p>
-        <p>It uses SQLite FTS5 because what I look up is usually an exact string, like an error message or a file name.</p>
-        <a class="more" href="./agent-memory-mcp.html">Project page →</a>
-      </div>
-      <div class="frame">
-        <div class="label"><span>Live search demo</span><span>sample messages</span></div>
-        <div class="search">
-          <input id="q" type="search" value="lock" placeholder="Try: lock, OCR, picker" aria-label="Search sample messages">
-          <div class="meta" id="meta"></div>
-          <ul class="hits" id="hits"></ul>
-        </div>
-      </div>
-    </article>
-
-    <article class="proj">
-      <div>
         <h3>Multi-Source Data Ingestion Pipeline</h3>
         <p class="stack">Python, REST APIs, Playwright, pytest</p>
         <p>Collects job postings from 32 source types into one store. A posting found on LinkedIn, an aggregator and the company's own board is one record, keyed by the system that hosts it.</p>
@@ -167,14 +149,19 @@
 
     <article class="proj">
       <div>
-        <h3>Cross-Device Task Dashboard</h3>
-        <p class="stack">React, TypeScript, Supabase</p>
-        <p>Task app with Google sign-in. Tasks sync between devices on the same account.</p>
-        <a class="more" href="https://tasks.phantom.moe/" target="_blank" rel="noopener">Open the app →</a>
+        <h3>Agent Memory MCP Server</h3>
+        <p class="stack">Python standard library, MCP, SQLite FTS5</p>
+        <p>Two coding agents on one machine can't see each other's history, and neither remembers much between sessions. This server indexes the conversation logs of both (Claude Code and Codex) and lets either search them: 128K+ messages, about 2 ms a search.</p>
+        <p>It uses SQLite FTS5 because what I look up is usually an exact string, like an error message or a file name.</p>
+        <a class="more" href="./agent-memory-mcp.html">Project page →</a>
       </div>
-      <div class="frame shot">
-        <div class="label"><span>tasks.phantom.moe</span><span></span></div>
-        <img src="./assets/task-dashboard-preview.png" alt="Task dashboard with a task list and a send panel">
+      <div class="frame">
+        <div class="label"><span>Live search demo</span><span>sample messages</span></div>
+        <div class="search">
+          <input id="q" type="search" value="lock" placeholder="Try: lock, OCR, picker" aria-label="Search sample messages">
+          <div class="meta" id="meta"></div>
+          <ul class="hits" id="hits"></ul>
+        </div>
       </div>
     </article>
   </section>
@@ -183,12 +170,16 @@
     <h2><span class="n">04</span>Other projects</h2>
     <div class="other">
       <div>
-        <h3><a href="./cndict.html">Mandarin Dictionary Aggregator</a></h3>
-        <p>Looks a word up in Naver, Weblio, Wiktionary, DeepL, Baidu and other dictionaries from one page.</p>
+        <h3><a href="https://foothilldc.com/" target="_blank" rel="noopener">Foothill Dental Ceramics website</a></h3>
+        <p>Rebuilt the lab's public site as a custom static site with an English and Korean content editor for the owner, a Cloudflare Workers backend, and Playwright and axe accessibility tests.</p>
       </div>
       <div>
-        <h3><a href="./screentrigger.html">Screen State Detection</a></h3>
-        <p>Desktop tool that detects UI states with template matching and runs the actions configured for each one.</p>
+        <h3><a href="./wynncraft-market/">Wynncraft Market Explorer</a></h3>
+        <p>Item and market data explorer for the MMO Wynncraft, part of a build optimizer I maintain that ranks gear by damage and survivability.</p>
+      </div>
+      <div>
+        <h3><a href="https://tasks.phantom.moe/" target="_blank" rel="noopener">Cross-Device Task Dashboard</a></h3>
+        <p>React and TypeScript task app with Google sign-in and Supabase sync between devices on the same account.</p>
       </div>
     </div>
   </section>
