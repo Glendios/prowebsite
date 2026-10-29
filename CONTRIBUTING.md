@@ -25,7 +25,7 @@ Canonical guide for phantom.moe (this repo). `AGENTS.md` and `CLAUDE.md` point h
 
 - Pages describe what a tool does, how it works, and what a visitor can inspect.
 - No recruiter, role-fit, or portfolio-strategy wording. No "what this demonstrates", "worth highlighting", or deployment-safety notes. No disclaimers that justify unfinished work.
-- Keep the full name off public metadata. The public identity is "Phantom Tools"; the contact path is github.com/Glendios.
+- Keep the full name off public metadata (`<title>`, meta and og tags). Since 2026-10-29 the portfolio pages show the name as visible header text with GitHub and LinkedIn links, because the site is linked from job applications (Noel delegated the call; blind Codex review chose this option). Tool and hobby pages keep the "Phantom Tools" identity.
 - Private entry points (`docs/a/`, the directory) use vague wording that doesn't say what they lead to.
 
 ## Formatting
